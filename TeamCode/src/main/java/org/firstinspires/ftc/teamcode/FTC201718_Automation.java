@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
@@ -50,5 +51,38 @@ abstract public class FTC201718_Automation extends LinearOpMode
         sensors.init(hardwareMap);
         telemetry.addData("Status" , "Init Automation Done");
         telemetry.update();
+    }
+
+    public void waitForStartAndDisplayWhileWaiting()
+    {
+        while (!isStarted() && !isStopRequested())
+        {
+            //insert telemetry data for sensors and other data
+        }
+    }
+
+    public void fullStop()
+    {
+        telemetry.addData("Status" , "fullStop");
+        telemetry.update();
+        actuators.FrontLeft.setPower(0);
+        actuators.FrontRight.setPower(0);
+        actuators.RearLeft.setPower(0);
+        actuators.RearRight.setPower(0);
+    }
+
+    public void encoderReset()
+    {
+        telemetry.addData("Status" , "encoderReset");
+        telemetry.update();
+        actuators.FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        actuators.FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        actuators.RearLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        actuators.RearRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        idle();
+        actuators.FrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        actuators.FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        actuators.RearLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        actuators.RearRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 }
