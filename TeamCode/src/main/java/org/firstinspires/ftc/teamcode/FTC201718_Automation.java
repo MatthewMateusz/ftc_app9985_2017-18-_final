@@ -33,4 +33,22 @@ abstract public class FTC201718_Automation extends LinearOpMode
 
     //Timeout variable
     private ElapsedTime runtime = new ElapsedTime();
+
+    public void setupHardware()
+    {
+        /*
+        Initialize the drive system variables
+        The init() method of the hardware class does all the work here
+         */
+        telemetry.addData("Status" , "Init Automation");
+        telemetry.addData("Status" , "Init Actuators");
+        telemetry.update();
+        actuators.init(hardwareMap);
+        telemetry.addData("Status" , "Init Automation");
+        telemetry.addData("Status" , "Init Sensors");
+        telemetry.update();
+        sensors.init(hardwareMap);
+        telemetry.addData("Status" , "Init Automation Done");
+        telemetry.update();
+    }
 }
