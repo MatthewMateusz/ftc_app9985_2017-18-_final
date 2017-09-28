@@ -58,11 +58,26 @@ abstract public class FTC201718_Automation extends LinearOpMode
         while (!isStarted() && !isStopRequested())
         {
             //insert telemetry data for sensors and other data
+            telemetry.addData("Left Color:       " ,
+                    "RED " + sensors.LeftColorSensor.red() +
+                    "  GRN " + sensors.LeftColorSensor.green() +
+                    "  BLU " + sensors.LeftColorSensor.blue());
+
+            telemetry.addData("Left       " ,
+                    "RED " + sensors.RightColorSensor.red() +
+                    "  GRN " + sensors.RightColorSensor.green() +
+                            "  BLU " + sensors.RightColorSensor.green());
+
+            //Touch sensor data
+
+            telemetry.update();
+            idle();
         }
     }
 
     public void fullStop()
     {
+        //Make sure to add new motors to this list NWMRT
         telemetry.addData("Status" , "fullStop");
         telemetry.update();
         actuators.FrontLeft.setPower(0);
@@ -73,6 +88,7 @@ abstract public class FTC201718_Automation extends LinearOpMode
 
     public void encoderReset()
     {
+        //Make sure to add new motors to this list NWMRT
         telemetry.addData("Status" , "encoderReset");
         telemetry.update();
         actuators.FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -85,4 +101,7 @@ abstract public class FTC201718_Automation extends LinearOpMode
         actuators.RearLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         actuators.RearRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
+
+
+
 }
