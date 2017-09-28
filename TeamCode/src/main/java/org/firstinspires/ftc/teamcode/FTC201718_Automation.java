@@ -58,12 +58,12 @@ abstract public class FTC201718_Automation extends LinearOpMode
         while (!isStarted() && !isStopRequested())
         {
             //insert telemetry data for sensors and other data
-            telemetry.addData("Left Color:       " ,
+            telemetry.addData("Left Color:  " ,
                     "RED " + sensors.LeftColorSensor.red() +
                     "  GRN " + sensors.LeftColorSensor.green() +
                     "  BLU " + sensors.LeftColorSensor.blue());
 
-            telemetry.addData("Left       " ,
+            telemetry.addData("Right Color:  " ,
                     "RED " + sensors.RightColorSensor.red() +
                     "  GRN " + sensors.RightColorSensor.green() +
                             "  BLU " + sensors.RightColorSensor.green());
