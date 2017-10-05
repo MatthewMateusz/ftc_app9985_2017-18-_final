@@ -20,6 +20,7 @@ public class FTC201718_Actuators_Setup
     public DcMotor FrontRight = null;
     public DcMotor RearLeft   = null;
     public DcMotor RearRight  = null;
+    public DcMotor YFrontArm  = null;
 
     public static final double COUNTS_PER_MOTOR_REV     = 1440; // eg: TERIX Motor Encoders
     public static final double DRIVE_GEAR_REDUCTION     = 1.0; // This is < if geared UP
@@ -58,6 +59,7 @@ public class FTC201718_Actuators_Setup
         FrontRight = hwMap.dcMotor.get("front_right");
         RearLeft   = hwMap.dcMotor.get("rear_left");
         RearRight  = hwMap.dcMotor.get("rear_right");
+        YFrontArm  = hwMap.dcMotor.get("Y_Arm");
 
         //Set all motors to zero power
         /*
@@ -67,6 +69,7 @@ public class FTC201718_Actuators_Setup
         FrontRight.setPower(0);
         RearLeft.setPower(0);
         RearRight.setPower(0);
+        YFrontArm.setPower(0);
 
         //Set all motors to run without encoders
         //May want to use RUN_USING_ENCODERS if encoders are installed
@@ -77,6 +80,7 @@ public class FTC201718_Actuators_Setup
         FrontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         RearLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         RearRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        YFrontArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
 
         //Define and Initalize all installed servos

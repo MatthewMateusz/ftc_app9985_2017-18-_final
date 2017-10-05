@@ -34,10 +34,10 @@ public class FTC201718_AutoBlue extends FTC201718_Automation
         telemetry.update();
 
         //Add processes for Init
-        setupVuforia();
+        setupVuforia("RelicVuMark" , "RelicRecovery");
 
         //We don't know where the robot is, so set it to the orgin
-        //If we don't include this, it would be bnull, which would cause errors later on
+        //If we don't include this, it would be null, which would cause errors later on
         lastKnownLocation = createMatrix( 0 , 0 , 0 , 0 , 0 , 0);
 
         telemetry.addData("Status" , "Finished Init");

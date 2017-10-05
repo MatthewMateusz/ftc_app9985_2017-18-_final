@@ -113,6 +113,7 @@ abstract public class FTC201718_Automation extends LinearOpMode
         actuators.FrontRight.setPower(0);
         actuators.RearLeft.setPower(0);
         actuators.RearRight.setPower(0);
+        actuators.YFrontArm.setPower(0);
     }
 
     public void encoderReset()
@@ -124,13 +125,15 @@ abstract public class FTC201718_Automation extends LinearOpMode
         actuators.FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         actuators.RearLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         actuators.RearRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        actuators.YFrontArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         idle();
         actuators.FrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         actuators.FrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         actuators.RearLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         actuators.RearRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        actuators.YFrontArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
-    public void setupVuforia()
+    public void setupVuforia(String AssetName , String TargetName)
     {
         //Seup parameters to create localizer
         parameters = new VuforiaLocalizer.Parameters(R.id.cameraMonitorViewId); // To remove camera view from the scree, remove the R.
@@ -141,12 +144,12 @@ abstract public class FTC201718_Automation extends LinearOpMode
 
         // These are the vision targets that we want to use
         // The string needs to be the name of the approprate .xml file in the assets folder
-        visionTargets = vuforiaLocalizer.loadTrackablesFromAsset("RelicVuMark");
+        visionTargets = vuforiaLocalizer.loadTrackablesFromAsset(AssetName); // Ex. RelicVuMark
         Vuforia.setHint(HINT.HINT_MAX_SIMULTANEOUS_IMAGE_TARGETS , 4);
 
         // Setup the target to be tracked
         target = visionTargets.get(0); // 0 corresponds to the wheels target
-        target.setName("RelicRecovery"); // target name
+        target.setName(TargetName); // target name ex. RelicRecovery
         target.setLocation(createMatrix(0 , 500 , 0 , 90 , 0 , 90));
 
         //Set the phone location on robot
