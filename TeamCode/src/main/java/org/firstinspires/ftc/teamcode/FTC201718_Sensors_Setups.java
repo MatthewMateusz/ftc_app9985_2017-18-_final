@@ -17,6 +17,9 @@ public class FTC201718_Sensors_Setups
 
     //Touch Sensors
       //public ModernRoboticsTouchSensor *name* = null;
+    public ModernRoboticsTouchSensor limitArmUp  = null;
+    public ModernRoboticsTouchSensor limitArmDown = null;
+
 
     //Optical Distance Sensor (Bright or dark) sensor
       //public OpticalDistanceSensor *name* = null;
@@ -47,6 +50,8 @@ public class FTC201718_Sensors_Setups
 
         //Defining Touch Sensors
           //*Program name* = (ModernRoboticsTouchSensor) hwmap.touchSensor.get("Phone Name");
+        limitArmUp   = (ModernRoboticsTouchSensor) hwMap.touchSensor.get("arm_limitUp");
+        limitArmDown = (ModernRoboticsTouchSensor) hwMap.touchSensor.get("arm_limitDown"); 
 
         //Defining 'Bight or Dark' sensors and enableing led
           //*Program name* = hwmap.opticalDistanceSensor.get("*Phone Name*");

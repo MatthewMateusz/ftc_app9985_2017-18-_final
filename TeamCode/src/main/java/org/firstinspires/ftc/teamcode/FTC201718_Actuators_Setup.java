@@ -31,7 +31,9 @@ public class FTC201718_Actuators_Setup
     public static final double INCHES_PER_ANGLE_DRAG    = ( (WHEEL_SEPERATION_INCHES * 3.14159269 / 2.0) / 90.0); // calibration affected by the distance between the driving wheels
 
     //Declares servos on robot
-    public Servo ServoArm = null;
+    public Servo ServoArm         = null;
+    public Servo LeftGlyphHolder  = null;
+    public Servo RightGlyphHolder = null;
 
     //Servo starting positions
     double ServoArmPostition = 0; // 0 - 1 where 0 is 0 degrees and 1 is 180 degrees
@@ -84,9 +86,13 @@ public class FTC201718_Actuators_Setup
 
 
         //Define and Initalize all installed servos
-        ServoArm = hwMap.servo.get("servo_arm");
+        ServoArm         = hwMap.servo.get("servo_arm");
+        LeftGlyphHolder  = hwMap.servo.get("servo_leftHolder");
+        RightGlyphHolder = hwMap.servo.get("servo_rightHolder");
 
         //Set Servo Positions
         ServoArm.setPosition(ServoArmPostition);
+        LeftGlyphHolder.setPosition(ServoArmPostition);
+        RightGlyphHolder.setPosition(ServoArmPostition);
     }
 }
