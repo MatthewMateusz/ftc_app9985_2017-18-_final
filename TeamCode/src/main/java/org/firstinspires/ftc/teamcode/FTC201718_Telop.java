@@ -14,6 +14,8 @@ public class FTC201718_Telop extends OpMode
     private FTC201718_Actuators_Setup actuators = new FTC201718_Actuators_Setup();
     private FTC201718_Sensors_Setups  sensors   = new FTC201718_Sensors_Setups();
 
+    private static final double Deadzone = 0.1;
+
 
     //Code thar runs ONCE when the driver hits INIT
     @Override
@@ -55,7 +57,7 @@ public class FTC201718_Telop extends OpMode
         double GP1_LeftStickY  = gamepad1.left_stick_y; //Linear slide in and out
         //double GP1_LeftStickX  = gamepad1.left_stick_x;
         double GP1_RightStickY = gamepad1.right_stick_y; //Robot forward/backwrad
-        double GP1_RIghtStickX = gamepad1.right_stick_x; // Robot left/right
+        double GP1_RightStickX = gamepad1.right_stick_x; // Robot left/right
 
         boolean GP1_LeftStickButton  = gamepad1.left_stick_button; //Toggle grab
         //boolean GP1_RightStickButton = gamepad1.right_stick_button;
@@ -101,9 +103,59 @@ public class FTC201718_Telop extends OpMode
         //boolean GP2_DPadDown  = gamepad2.dpad_down;
 
         //Custom vars
-        boolean StickPressed;
+        String mode;
 
-        //Define vars
+        //INit
+        mode = "";
+
+        //Slow mode
+        if (GP1_LeftBumper)
+        {
+            GP1_RightStickY  = 0.25 * GP1_RightStickY;
+            GP1_RightStickX  = 0.25 * GP1_RightStickX;
+            GP1_LeftTrigger  = 0.25 * GP1_LeftTrigger;
+            GP1_RightTrigger = 0.25 * GP1_RightTrigger;
+            mode = "Slow ";
+        }
+
+        //See if joystick is in dead zone if yes then stop the robot if no test to see which way to move
+        if (Math.abs(GP1_RightStickY) < Deadzone && Math.abs(GP1_RightStickX) < Deadzone)
+        {
+            if (Math.abs(GP1_LeftTrigger) > Deadzone || Math.abs(GP1_RightTrigger) > Deadzone)
+            {
+                //Needs to be tested
+                MoveRotate(GP1_LeftTrigger - GP1_RightTrigger);
+                mode += "Rotate";
+
+            }
+            else
+            {
+                MoveStop();
+                mode += "Stop";
+            }
+        }
+        else
+        {
+            if (Math.abs(GP1_RightStickY) > Math.abs(GP1_RightStickX))
+            {
+                MoveVertical(GP1_RightStickY);
+                mode += "Vertical";
+            }
+            else
+            {
+                //Needs to be tested
+                MoveHorizontal(GP1_RightStickX);
+                mode += "Horizontal";
+            }
+        }
+
+        //Limit Arm
+        if (  (GP1_LeftStickY < 0 && sensors.limitArmUp.isPressed()) || ( GP1_LeftStickY > 0  && sensors.limitArmDown.isPressed()))
+        {
+            GP1_LeftStickY = 0;
+        }
+
+        actuators.YFrontArm.setPower(GP1_LeftStickY);
 
     }
 
@@ -115,23 +167,16 @@ public class FTC201718_Telop extends OpMode
         telemetry.update();
     }
 
-    public void RotateLeft (double power)
-    {
-        actuators.FrontLeft.setPower(-power);
-        actuators.FrontRight.setPower(power);
-        actuators.RearLeft.setPower(-power);
-        actuators.RearRight.setPower(power);
-    }
 
-    public void RoateRight (double power)
+    public void MoveRotate (double power)
     {
         actuators.FrontLeft.setPower(power);
-        actuators.FrontRight.setPower(-power);
-        actuators.RearLeft.setPower(power);
+        actuators.FrontRight.setPower(power);
+        actuators.RearLeft.setPower(-power);
         actuators.RearRight.setPower(-power);
     }
 
-    public void MoveForward (double power)
+    public void MoveVertical (double power)
     {
         actuators.FrontLeft.setPower(power);
         actuators.FrontRight.setPower(power);
@@ -139,16 +184,7 @@ public class FTC201718_Telop extends OpMode
         actuators.RearRight.setPower(power);
     }
 
-    public void MoveBackward (double power)
-    {
-        actuators.FrontLeft.setPower(-power);
-        actuators.FrontRight.setPower(-power);
-        actuators.RearLeft.setPower(-power);
-        actuators.RearRight.setPower(-power);
-    }
-
-    //Check this one
-    public void MoveLeft (double power)
+    public void MoveHorizontal (double power)
     {
         actuators.FrontLeft.setPower(-power);
         actuators.FrontRight.setPower(power);
@@ -156,12 +192,11 @@ public class FTC201718_Telop extends OpMode
         actuators.RearRight.setPower(-power);
     }
 
-    //Check this one
-    public void MoveRight (double power)
+    public void MoveStop ()
     {
-        actuators.FrontLeft.setPower(power);
-        actuators.FrontRight.setPower(-power);
-        actuators.RearLeft.setPower(-power);
-        actuators.RearRight.setPower(power);
+        actuators.FrontLeft.setPower(0);
+        actuators.FrontRight.setPower(0);
+        actuators.RearLeft.setPower(0);
+        actuators.RearRight.setPower(0);
     }
 }
