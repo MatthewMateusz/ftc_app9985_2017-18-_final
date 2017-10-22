@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Hardware;
@@ -36,7 +37,7 @@ public class FTC201718_Actuators_Setup
     public Servo RightGlyphHolder = null;
 
     //Servo starting positions
-    double ServoArmPostition = 0; // 0 - 1 where 0 is 0 degrees and 1 is 180 degrees
+    double ServoArmPostition = 0.5; // 0 - 1 where 0 is 0 degrees and 1 is 180 degrees
 
     // Hardware mapping setup
     HardwareMap hwMap = null;
@@ -57,11 +58,19 @@ public class FTC201718_Actuators_Setup
         /* Example: *name* = hwMap.dcMotor.get("*name of motor in phone*");
         *  Example: *name*.setDirection(DcMotor.Direction.|FORWARD or REVERSE|)
         */
+
+
+
         FrontLeft  = hwMap.dcMotor.get("front_left");
         FrontRight = hwMap.dcMotor.get("front_right");
         RearLeft   = hwMap.dcMotor.get("rear_left");
         RearRight  = hwMap.dcMotor.get("rear_right");
         YFrontArm  = hwMap.dcMotor.get("Y_Arm");
+
+        FrontLeft.setDirection(DcMotor.Direction.FORWARD);
+        FrontRight.setDirection(DcMotor.Direction.FORWARD);
+        RearRight.setDirection(DcMotor.Direction.REVERSE);
+        RearLeft.setDirection(DcMotor.Direction.REVERSE);
 
         //Set all motors to zero power
         /*

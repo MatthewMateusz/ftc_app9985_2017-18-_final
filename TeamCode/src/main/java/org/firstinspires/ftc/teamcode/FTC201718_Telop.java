@@ -7,12 +7,17 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 /**
  * Created by Matthew on 9/27/2017.
  */
-@Disabled
-@TeleOp (name = "TEMPLATE_Teleop")
+
+@TeleOp (name = "Teleop")
 public class FTC201718_Telop extends OpMode
 {
     private FTC201718_Actuators_Setup actuators = new FTC201718_Actuators_Setup();
     private FTC201718_Sensors_Setups  sensors   = new FTC201718_Sensors_Setups();
+
+    public static final double OpenJaw  = 1;
+    public static final double CloseJaw = 0.5;
+    public static final double TailUp   = 0.5;
+    public static final double TailDown = 1;
 
     private static final double Deadzone = 0.1;
 
@@ -150,12 +155,40 @@ public class FTC201718_Telop extends OpMode
         }
 
         //Limit Arm
-        if (  (GP1_LeftStickY < 0 && sensors.limitArmUp.isPressed()) || ( GP1_LeftStickY > 0  && sensors.limitArmDown.isPressed()))
+        if (  (GP1_LeftStickY < 0 && sensors.limitArmDown.isPressed()) || ( GP1_LeftStickY > 0  && sensors.limitArmUp.isPressed()))
         {
             GP1_LeftStickY = 0;
         }
 
+        //Opens Jaw
+        if (GP2_ButtonA)
+        {
+            actuators.LeftGlyphHolder.setPosition(0);
+            actuators.RightGlyphHolder.setPosition(1);
+        }
+
+        //Closes Jaw
+        if (GP2_ButtonX)
+        {
+            actuators.LeftGlyphHolder.setPosition(CloseJaw);
+            actuators.RightGlyphHolder.setPosition(0.4);
+        }
+
+        //Tail Up
+        if (GP2_ButtonY)
+        {
+            actuators.ServoArm.setPosition(TailUp);
+        }
+
+        //Tail Down
+        if (GP2_ButtonB)
+        {
+            actuators.ServoArm.setPosition(TailDown);
+        }
+
         actuators.YFrontArm.setPower(GP1_LeftStickY);
+
+
 
     }
 
