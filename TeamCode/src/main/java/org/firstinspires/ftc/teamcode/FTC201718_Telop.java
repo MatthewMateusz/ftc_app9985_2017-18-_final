@@ -16,8 +16,8 @@ public class FTC201718_Telop extends OpMode
 
     public static final double OpenJaw  = 1;
     public static final double CloseJaw = 0.5;
-    public static final double TailUp   = 0.5;
-    public static final double TailDown = 1;
+    public static final double TailUp   = -0.1;
+    public static final double TailDown = 0.6;
 
     private static final double Deadzone = 0.1;
 
@@ -113,14 +113,19 @@ public class FTC201718_Telop extends OpMode
         //INit
         mode = "";
 
-        //Slow mode
+        GP1_RightStickY  = 0.25 * GP1_RightStickY;
+        GP1_RightStickX  = 0.25 * GP1_RightStickX;
+        GP1_LeftTrigger  = 0.25 * GP1_LeftTrigger;
+        GP1_RightTrigger = 0.25 * GP1_RightTrigger;
+
+        //Fast mode
         if (GP1_LeftBumper)
         {
-            GP1_RightStickY  = 0.25 * GP1_RightStickY;
-            GP1_RightStickX  = 0.25 * GP1_RightStickX;
-            GP1_LeftTrigger  = 0.25 * GP1_LeftTrigger;
-            GP1_RightTrigger = 0.25 * GP1_RightTrigger;
-            mode = "Slow ";
+            GP1_RightStickY  = 4 * GP1_RightStickY;
+            GP1_RightStickX  = 4 * GP1_RightStickX;
+            GP1_LeftTrigger  = 4 * GP1_LeftTrigger;
+            GP1_RightTrigger = 4 * GP1_RightTrigger;
+            mode = "Fast ";
         }
 
         //See if joystick is in dead zone if yes then stop the robot if no test to see which way to move
@@ -141,18 +146,19 @@ public class FTC201718_Telop extends OpMode
         }
         else
         {
-            if (Math.abs(GP1_RightStickY) > Math.abs(GP1_RightStickX))
+            if (Math.abs(GP1_RightStickY) < Math.abs(GP1_RightStickX))
             {
-                MoveVertical(GP1_RightStickY);
-                mode += "Vertical";
+                MoveVertical(GP1_RightStickX);
+                mode += "Horizontal";
             }
             else
             {
                 //Needs to be tested
                 MoveHorizontal(GP1_RightStickX);
-                mode += "Horizontal";
+                mode += "Vertical";
             }
         }
+
 
         //Limit Arm
         if (  (GP1_LeftStickY < 0 && sensors.limitArmDown.isPressed()) || ( GP1_LeftStickY > 0  && sensors.limitArmUp.isPressed()))
@@ -163,15 +169,15 @@ public class FTC201718_Telop extends OpMode
         //Opens Jaw
         if (GP2_ButtonA)
         {
-            actuators.LeftGlyphHolder.setPosition(0);
-            actuators.RightGlyphHolder.setPosition(1);
+            actuators.LeftGlyphHolder.setPosition(0.5);
+            actuators.RightGlyphHolder.setPosition(0.5);
         }
 
         //Closes Jaw
         if (GP2_ButtonX)
         {
-            actuators.LeftGlyphHolder.setPosition(CloseJaw);
-            actuators.RightGlyphHolder.setPosition(0.4);
+            actuators.LeftGlyphHolder.setPosition(1);
+            actuators.RightGlyphHolder.setPosition(-0.1);
         }
 
         //Tail Up

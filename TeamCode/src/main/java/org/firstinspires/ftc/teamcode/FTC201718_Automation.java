@@ -175,4 +175,29 @@ abstract public class FTC201718_Automation extends LinearOpMode
     {
         return matrix.formatAsTransform();
     }
+
+    public int LeftBallColorDetect ()
+    {
+
+        int returner;
+        //1 is left ball is red
+        //-1 is left ball is blue
+        returner = 0;
+
+        if (sensors.LeftColorSensor.red() > sensors.RightColorSensor.blue())
+        {
+            returner = 1;
+        }
+        else if (sensors.LeftColorSensor.red() < sensors.RightColorSensor.blue())
+        {
+            returner = -1;
+        }
+        else
+        {
+            returner = 0;
+        }
+
+
+        return returner;
+    }
 }

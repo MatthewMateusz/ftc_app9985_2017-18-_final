@@ -100,7 +100,7 @@ public class FTC201718_Actuators_Setup
         RightGlyphHolder = hwMap.servo.get("servo_rightHolder");
 
         //Set Servo Positions
-        ServoArm.setPosition(ServoArmPostition);
+        ServoArm.setPosition(-0.1);
         LeftGlyphHolder.setPosition(ServoArmPostition);
         RightGlyphHolder.setPosition(ServoArmPostition);
     }

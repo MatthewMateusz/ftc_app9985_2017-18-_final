@@ -24,6 +24,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 @Autonomous (name = "TEMPLATE_Auto")
 public class FTC201718_AutoBlue extends FTC201718_Automation
 {
+    public static final double ServoArm_Down = 1;
+    public static final double ServoArm_Up   = 0;
+
     @Override
     public void runOpMode() throws InterruptedException
     {
@@ -50,8 +53,16 @@ public class FTC201718_AutoBlue extends FTC201718_Automation
         visionTargets.activate();
 
         //Add autonomous code here
+        MoveAlpha();
+
 
         telemetry.addData("Status" , "Complete");
         telemetry.update();
+    }
+
+    public void MoveAlpha ()
+    {
+        // Move ServoArm down and detech color and based on the color rotate
+        actuators.ServoArm.setPosition(ServoArm_Down);
     }
 }
