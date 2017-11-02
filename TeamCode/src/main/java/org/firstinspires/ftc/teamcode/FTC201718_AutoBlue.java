@@ -60,9 +60,23 @@ public class FTC201718_AutoBlue extends FTC201718_Automation
         telemetry.update();
     }
 
+    public void CylpherGraberOpen (boolean Graber)
+    {
+        if (Graber)
+        {
+            actuators.LeftGlyphHolder.setPosition(1);
+            actuators.RightGlyphHolder.setPosition(-0.1);
+        }
+        else
+        {
+
+        }
+    }
+
     public void MoveAlpha ()
     {
         // Move ServoArm down and detech color and based on the color rotate
+
         actuators.ServoArm.setPosition(ServoArm_Down);
     }
 }

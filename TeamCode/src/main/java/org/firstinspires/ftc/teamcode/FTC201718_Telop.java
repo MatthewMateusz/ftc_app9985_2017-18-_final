@@ -169,8 +169,8 @@ public class FTC201718_Telop extends OpMode
         //Opens Jaw
         if (GP2_ButtonA)
         {
-            actuators.LeftGlyphHolder.setPosition(0.5);
-            actuators.RightGlyphHolder.setPosition(0.5);
+            actuators.LeftGlyphHolder.setPosition(0.325);
+            actuators.RightGlyphHolder.setPosition(0.65);
         }
 
         //Closes Jaw
@@ -192,7 +192,7 @@ public class FTC201718_Telop extends OpMode
             actuators.ServoArm.setPosition(TailDown);
         }
 
-        actuators.YFrontArm.setPower(-GP1_LeftStickY);
+        actuators.YFrontArm.setPower(GP1_LeftStickY);
 
 
 
