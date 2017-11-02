@@ -134,7 +134,7 @@ public class FTC201718_Telop extends OpMode
             if (Math.abs(GP1_LeftTrigger) > Deadzone || Math.abs(GP1_RightTrigger) > Deadzone)
             {
                 //Needs to be tested
-                MoveRotate(GP1_LeftTrigger - GP1_RightTrigger);
+                MoveRotate(GP1_RightTrigger - GP1_LeftTrigger);
                 mode += "Rotate";
 
             }
@@ -154,7 +154,7 @@ public class FTC201718_Telop extends OpMode
             else
             {
                 //Needs to be tested
-                MoveHorizontal(GP1_RightStickX);
+                MoveHorizontal(GP1_RightStickY);
                 mode += "Vertical";
             }
         }
@@ -192,7 +192,7 @@ public class FTC201718_Telop extends OpMode
             actuators.ServoArm.setPosition(TailDown);
         }
 
-        actuators.YFrontArm.setPower(GP1_LeftStickY);
+        actuators.YFrontArm.setPower(-GP1_LeftStickY);
 
 
 
