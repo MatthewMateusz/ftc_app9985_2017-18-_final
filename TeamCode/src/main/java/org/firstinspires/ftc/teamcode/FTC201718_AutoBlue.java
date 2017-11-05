@@ -20,8 +20,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
  * Created by Matthew on 9/27/2017.
  */
 
-@Disabled
-@Autonomous (name = "TEMPLATE_Auto")
+@Autonomous (name = "BlueAuto_WIP")
 public class FTC201718_AutoBlue extends FTC201718_Automation
 {
     public static final double ServoArm_Down = 1;
@@ -35,6 +34,7 @@ public class FTC201718_AutoBlue extends FTC201718_Automation
 
         telemetry.addData("Status" , "Init the autonomous");
         telemetry.update();
+        setupHardware();
 
         //Add processes for Init
         setupVuforia("RelicVuMark" , "RelicRecovery");
@@ -53,30 +53,28 @@ public class FTC201718_AutoBlue extends FTC201718_Automation
         visionTargets.activate();
 
         //Add autonomous code here
-        MoveAlpha();
-
+        //MoveAlpha();
+        encoderDriveDistance(0.5 , 5 , 3);
 
         telemetry.addData("Status" , "Complete");
-        telemetry.update();
-    }
-
-    public void CylpherGraberOpen (boolean Graber)
-    {
-        if (Graber)
-        {
-            actuators.LeftGlyphHolder.setPosition(1);
-            actuators.RightGlyphHolder.setPosition(-0.1);
-        }
-        else
-        {
-
-        }
     }
 
     public void MoveAlpha ()
     {
-        // Move ServoArm down and detech color and based on the color rotate
+        int LeftBallColor;
+        LeftBallColor = 0;
 
+        // Move ServoArm down and detech color and based on the color rotate
+        CylpherGraber(false);
         actuators.ServoArm.setPosition(ServoArm_Down);
+        LeftBallColor = LeftBallColorDetect();
+        if (LeftBallColor == -1)
+        {
+            encoderTurnInPlace(0.5 , 90 , 5);
+        }
+        else
+        {
+            encoderTurnInPlace(0.5 , -90 , 5);
+        }
     }
 }

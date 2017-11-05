@@ -28,7 +28,7 @@ public class FTC201718_Actuators_Setup
     public static final double WHEEL_DIAMETER_INCHES    = 4.0 * (24.5/24.0); //wheel circumference with real-life travel distance adjustment
     public static final double WHEEL_SEPERATION_INCHES  = 14.0; //
     public static final double COUNTS_PER_INCHES        = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * 3.14159269);
-    public static final double INCHES_PER_ANGLE_INPLANE = (11.8/90.0); //calibration affected by the distance between the driving wheels
+    public static final double INCHES_PER_ANGLE_INPLACE = (11.8/90.0); //calibration affected by the distance between the driving wheels
     public static final double INCHES_PER_ANGLE_DRAG    = ( (WHEEL_SEPERATION_INCHES * 3.14159269 / 2.0) / 90.0); // calibration affected by the distance between the driving wheels
 
     //Declares servos on robot
@@ -101,7 +101,7 @@ public class FTC201718_Actuators_Setup
 
         //Set Servo Positions
         ServoArm.setPosition(-0.1);
-        LeftGlyphHolder.setPosition(ServoArmPostition);
-        RightGlyphHolder.setPosition(ServoArmPostition);
+        LeftGlyphHolder.setPosition(0.325);
+        RightGlyphHolder.setPosition(0.65);
     }
 }
