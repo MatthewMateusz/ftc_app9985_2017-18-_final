@@ -25,8 +25,8 @@ public class FTC201718_Actuators_Setup
 
     public static final double COUNTS_PER_MOTOR_REV     = 1440; // eg: TERIX Motor Encoders
     public static final double DRIVE_GEAR_REDUCTION     = 1.0; // This is < if geared UP
-    public static final double WHEEL_DIAMETER_INCHES    = 4.0 * (24.5/24.0); //wheel circumference with real-life travel distance adjustment
-    public static final double WHEEL_SEPERATION_INCHES  = 14.0; //
+    public static final double WHEEL_DIAMETER_INCHES    = 4.5 * (24.5/24.0); //wheel circumference with real-life travel distance adjustment
+    public static final double WHEEL_SEPERATION_INCHES  = 16.0; //
     public static final double COUNTS_PER_INCHES        = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * 3.14159269);
     public static final double INCHES_PER_ANGLE_INPLACE = (11.8/90.0); //calibration affected by the distance between the driving wheels
     public static final double INCHES_PER_ANGLE_DRAG    = ( (WHEEL_SEPERATION_INCHES * 3.14159269 / 2.0) / 90.0); // calibration affected by the distance between the driving wheels

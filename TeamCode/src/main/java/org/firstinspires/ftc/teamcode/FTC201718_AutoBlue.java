@@ -54,7 +54,7 @@ public class FTC201718_AutoBlue extends FTC201718_Automation
 
         //Add autonomous code here
         //MoveAlpha();
-        encoderDriveDistance(0.5 , 5 , 3);
+        encoderDrive4(0.5 , 100000 , 100000 , 1000000 , 100000 , 60);
 
         telemetry.addData("Status" , "Complete");
     }

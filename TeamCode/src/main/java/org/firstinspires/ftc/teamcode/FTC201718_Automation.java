@@ -83,6 +83,75 @@ abstract public class FTC201718_Automation extends LinearOpMode
         telemetry.update();
     }
 
+    public void encoderDrive4 ( double speed, double FrontLeftInches, double FrontRightInches, double RearLeftInches, double RearRightInches, double timeoutS)
+    {
+        int newFrontLeftTarget;
+        int newFrontRightTarget;
+        int newRearLeftTarget;
+        int newRearRightTarget;
+
+        //Ensures that the opmode is still active
+        if (opModeIsActive())
+        {
+            newFrontLeftTarget = actuators.FrontLeft.getCurrentPosition() + (int) (FrontLeftInches * FTC201718_Actuators_Setup.COUNTS_PER_INCHES);
+            newFrontRightTarget = actuators.FrontRight.getCurrentPosition() + (int) (FrontRightInches * FTC201718_Actuators_Setup.COUNTS_PER_INCHES);
+            newRearLeftTarget = actuators.RearLeft.getCurrentPosition() + (int) (RearLeftInches * FTC201718_Actuators_Setup.COUNTS_PER_INCHES);
+            newRearRightTarget = actuators.RearRight.getCurrentPosition() + (int) (RearLeftInches * FTC201718_Actuators_Setup.COUNTS_PER_INCHES);
+
+            actuators.FrontLeft.setTargetPosition(newFrontLeftTarget);
+            actuators.FrontRight.setTargetPosition(newFrontRightTarget);
+            actuators.RearLeft.setTargetPosition(newRearLeftTarget);
+            actuators.RearRight.setTargetPosition(newRearRightTarget);
+
+            //Run to position turned on
+            actuators.FrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            actuators.FrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            actuators.RearLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            actuators.RearRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            //Reset the timeout and start motion
+            runtime.reset();
+            speed = Range.clip(Math.abs(speed) , 0.0 , 1.0);
+            actuators.FrontLeft.setPower(speed);
+            actuators.FrontRight.setPower(-speed);
+            actuators.RearLeft.setPower(-speed);
+            actuators.RearRight.setPower(speed);
+
+
+            //Keep log
+            while (opModeIsActive() && (runtime.seconds() < timeoutS) ||
+                    (actuators.FrontLeft.isBusy() || actuators.FrontRight.isBusy() || actuators.RearLeft.isBusy() || actuators.RearRight.isBusy()) // && -> || --correction for the case of turn and drag
+                    )
+            {
+
+
+                // Display it for the driver.
+                telemetry.addData("Status", "encoderDrive");
+                telemetry.addData("Path1", "Running to %7d :%7d :%7d :%7d", newFrontLeftTarget , newFrontRightTarget , newRearLeftTarget , newRearRightTarget);
+                telemetry.addData("Path2", "Running at %7d :%7d :%7d :%7d",
+                        actuators.FrontLeft.getCurrentPosition(), actuators.FrontRight.getCurrentPosition(), actuators.RearLeft.getCurrentPosition(), actuators.RearRight.getCurrentPosition());
+                telemetry.update();
+                idle();
+            }
+
+            // Turn off RUN_TO_POSITION
+            actuators.FrontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            actuators.FrontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            actuators.RearLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            actuators.RearRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+            // Stop all motion;
+            actuators.FrontLeft.setPower(0);
+            actuators.FrontRight.setPower(0);
+            actuators.RearLeft.setPower(0);
+            actuators.RearRight.setPower(0);
+
+        }
+    }
+
+
+
+
     public void encoderDrive(double speed, double leftInches, double rightInches, double timeoutS) {
         int newLeftTarget;
         int newRightTarget;
