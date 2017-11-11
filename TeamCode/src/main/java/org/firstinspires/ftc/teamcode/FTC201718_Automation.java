@@ -83,7 +83,7 @@ abstract public class FTC201718_Automation extends LinearOpMode
         telemetry.update();
     }
 
-    public void encoderDrive4 ( double speed, double FrontLeftInches, double FrontRightInches, double RearLeftInches, double RearRightInches, double timeoutS)
+    public void encoderDrive4 ( double power, double FrontLeftEncoderTicks, double FrontRightEncoderTicks, double RearLeftEncoderTicks, double RearRightEncoderTicks, double timeoutS)
     {
         int newFrontLeftTarget;
         int newFrontRightTarget;
@@ -95,10 +95,10 @@ abstract public class FTC201718_Automation extends LinearOpMode
         {
             idle();
 
-            newFrontLeftTarget = actuators.FrontLeft.getCurrentPosition() + (int) (FrontLeftInches * FTC201718_Actuators_Setup.COUNTS_PER_INCHES);
-            newFrontRightTarget = actuators.FrontRight.getCurrentPosition() + (int) (FrontRightInches * FTC201718_Actuators_Setup.COUNTS_PER_INCHES);
-            newRearLeftTarget = actuators.RearLeft.getCurrentPosition() + (int) (RearLeftInches * FTC201718_Actuators_Setup.COUNTS_PER_INCHES);
-            newRearRightTarget = actuators.RearRight.getCurrentPosition() + (int) (RearLeftInches * FTC201718_Actuators_Setup.COUNTS_PER_INCHES);
+            newFrontLeftTarget = actuators.FrontLeft.getCurrentPosition() + (int) (FrontLeftEncoderTicks);
+            newFrontRightTarget = actuators.FrontRight.getCurrentPosition() + (int) (FrontRightEncoderTicks);
+            newRearLeftTarget = actuators.RearLeft.getCurrentPosition() + (int) (RearLeftEncoderTicks);
+            newRearRightTarget = actuators.RearRight.getCurrentPosition() + (int) (RearLeftEncoderTicks);
 
             actuators.FrontLeft.setTargetPosition(newFrontLeftTarget);
             actuators.FrontRight.setTargetPosition(newFrontRightTarget);
@@ -113,11 +113,11 @@ abstract public class FTC201718_Automation extends LinearOpMode
 
             //Reset the timeout and start motion
             runtime.reset();
-            speed = Range.clip(Math.abs(speed) , 0.0 , 1.0);
-            actuators.FrontLeft.setPower(speed);
-            actuators.FrontRight.setPower(speed);
-            actuators.RearLeft.setPower(speed);
-            actuators.RearRight.setPower(speed);
+            power = Range.clip(Math.abs(power) , 0.0 , 1.0);
+            actuators.FrontLeft.setPower(power);
+            actuators.FrontRight.setPower(power);
+            actuators.RearLeft.setPower(power);
+            actuators.RearRight.setPower(power);
 
             idle();
 
@@ -126,8 +126,6 @@ abstract public class FTC201718_Automation extends LinearOpMode
                     (actuators.FrontLeft.isBusy() && actuators.FrontRight.isBusy() && actuators.RearLeft.isBusy() && actuators.RearRight.isBusy()) // && -> || --correction for the case of turn and drag
                     )
             {
-
-
                 // Display it for the driver.
                 telemetry.addData("Status", "encoderDrive4");
                 telemetry.addData("Path1", "Running to %7d :%7d :%7d :%7d", newFrontLeftTarget , newFrontRightTarget , newRearLeftTarget , newRearRightTarget);
@@ -142,7 +140,6 @@ abstract public class FTC201718_Automation extends LinearOpMode
             actuators.FrontRight.setPower(0);
             actuators.RearLeft.setPower(0);
             actuators.RearRight.setPower(0);
-
             idle();
 
             // Turn off RUN_TO_POSITION
@@ -150,20 +147,20 @@ abstract public class FTC201718_Automation extends LinearOpMode
             actuators.FrontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             actuators.RearLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             actuators.RearRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
             idle();
         }
     }
 
-    public void encoderDriveDistance(double speed, double distance, double timeoutS) {
+    public void encoderDriveDistance(double speed, double distanceInches, double timeoutS) {
         telemetry.addData("Status", "encoderDriveDistance");
         telemetry.update();
         if (speed < 0.0) {
             // speed for the encoderDrive(...) must be always positive!
             speed = -speed;
-            distance = -distance;
+            distanceInches = -distanceInches;
         }
-        encoderDrive4(speed, distance, distance, distance, distance, timeoutS);
+        double encoder_distance = distanceInches * FTC201718_Actuators_Setup.COUNTS_PER_INCHES;
+        encoderDrive4(speed, encoder_distance, encoder_distance, encoder_distance, encoder_distance, timeoutS);
     }
 
     public void encoderTurnInPlace(double speed, double degrees, double timeoutS) {
@@ -174,9 +171,23 @@ abstract public class FTC201718_Automation extends LinearOpMode
             speed = -speed;
             degrees = -degrees;
         }
-        degrees = degrees * actuators.INCHES_PER_ANGLE;
+        double encoder_distance = degrees * actuators.COUNTS_PER_ANGLE;
 
-        encoderDrive4(speed , degrees , -degrees , degrees , -degrees , timeoutS);
+        encoderDrive4(speed , encoder_distance , -encoder_distance , encoder_distance , -encoder_distance , timeoutS);
+    }
+
+
+    public void encoderDriveAside(double speed, double inches, double timeoutS) {
+        telemetry.addData("Status", "encoderTurnInPlace");
+        telemetry.update();
+        if (speed < 0.0) {
+            // speed for the encoderDrive(...) must be always positive!
+            speed = -speed;
+            inches = -inches;
+        }
+        double encoder_distance = inches * actuators.COUNTS_PER_ASIDE;
+
+        encoderDrive4(speed , encoder_distance , encoder_distance , -encoder_distance , -encoder_distance , timeoutS);
     }
 
 
