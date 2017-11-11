@@ -13,11 +13,6 @@ public class FTC201718_MotorTest extends OpMode
     private FTC201718_Actuators_Setup actuators = new FTC201718_Actuators_Setup();
     private FTC201718_Sensors_Setups  sensors   = new FTC201718_Sensors_Setups();
 
-    public static final double OpenJaw  = 1;
-    public static final double CloseJaw = 0.5;
-    public static final double TailUp   = -0.1;
-    public static final double TailDown = 0.6;
-
     private static final double Deadzone = 0.1;
 
 

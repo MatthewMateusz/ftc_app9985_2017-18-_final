@@ -37,11 +37,11 @@ public class FTC201718_AutoBlue extends FTC201718_Automation
         setupHardware();
 
         //Add processes for Init
-        setupVuforia("RelicVuMark" , "RelicRecovery");
+        //setupVuforia("RelicVuMark" , "RelicRecovery");
 
         //We don't know where the robot is, so set it to the orgin
         //If we don't include this, it would be null, which would cause errors later on
-        lastKnownLocation = createMatrix( 0 , 0 , 0 , 0 , 0 , 0);
+        //lastKnownLocation = createMatrix( 0 , 0 , 0 , 0 , 0 , 0);
 
         telemetry.addData("Status" , "Finished Init");
         telemetry.update();
@@ -50,14 +50,15 @@ public class FTC201718_AutoBlue extends FTC201718_Automation
         telemetry.addData("Status" , "Started");
         telemetry.update();
 
-        visionTargets.activate();
+        //visionTargets.activate();
 
         //Add autonomous code here
         //MoveAlpha();
-        encoderDrive4(0.5 , 100000 , 100000 , 1000000 , 100000 , 60);
+        encoderTurnInPlace(0.25 , TURN_LEFT , 5);
 
         telemetry.addData("Status" , "Complete");
     }
+
 
     public void MoveAlpha ()
     {
@@ -77,4 +78,6 @@ public class FTC201718_AutoBlue extends FTC201718_Automation
             encoderTurnInPlace(0.5 , -90 , 5);
         }
     }
+
+
 }

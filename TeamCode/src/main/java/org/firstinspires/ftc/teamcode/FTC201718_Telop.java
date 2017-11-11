@@ -178,7 +178,7 @@ public class FTC201718_Telop extends OpMode
         if (GP2_ButtonA)
         {
             actuators.LeftGlyphHolder.setPosition(0.325);
-            actuators.RightGlyphHolder.setPosition(0.65);
+            actuators.RightGlyphHolder.setPosition(0.75);
         }
 
         //Closes Jaw

@@ -23,13 +23,8 @@ public class FTC201718_Actuators_Setup
     public DcMotor RearRight  = null;
     public DcMotor YFrontArm  = null;
 
-    public static final double COUNTS_PER_MOTOR_REV     = 1440; // eg: TERIX Motor Encoders
-    public static final double DRIVE_GEAR_REDUCTION     = 1.0; // This is < if geared UP
-    public static final double WHEEL_DIAMETER_INCHES    = 4.5 * (24.5/24.0); //wheel circumference with real-life travel distance adjustment
-    public static final double WHEEL_SEPERATION_INCHES  = 16.0; //
-    public static final double COUNTS_PER_INCHES        = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * 3.14159269);
-    public static final double INCHES_PER_ANGLE_INPLACE = (11.8/90.0); //calibration affected by the distance between the driving wheels
-    public static final double INCHES_PER_ANGLE_DRAG    = ( (WHEEL_SEPERATION_INCHES * 3.14159269 / 2.0) / 90.0); // calibration affected by the distance between the driving wheels
+    public static final double COUNTS_PER_INCHES    = 90; // to be calibrated empircally
+    public static final double INCHES_PER_ANGLE     = 21.56/90.0; // to be calibrated empircally
 
     //Declares servos on robot
     public Servo ServoArm         = null;
@@ -102,8 +97,8 @@ public class FTC201718_Actuators_Setup
         RightGlyphHolder = hwMap.servo.get("servo_rightHolder");
 
         //Set Servo Positions
-        ServoArm.setPosition(-0.1);
-        LeftGlyphHolder.setPosition(0.325);
-        RightGlyphHolder.setPosition(0.65);
+        ServoArm.setPosition(0.0);
+        LeftGlyphHolder.setPosition(0);
+        RightGlyphHolder.setPosition(1);
     }
 }
