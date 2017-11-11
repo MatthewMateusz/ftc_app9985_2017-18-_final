@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 /**
  * Created by Matthew on 9/27/2017.
@@ -47,6 +49,12 @@ public class FTC201718_Telop extends OpMode
     @Override
     public void start ()
     {
+        //TEMP
+        actuators.FrontLeft.setDirection(DcMotor.Direction.FORWARD);
+        actuators.FrontRight.setDirection(DcMotor.Direction.FORWARD);
+        actuators.RearLeft.setDirection(DcMotor.Direction.REVERSE);
+        actuators.RearRight.setDirection(DcMotor.Direction.REVERSE);
+        //END TEMP
         telemetry.addData("Say" , "I bet you will win");
         telemetry.update();
     }
@@ -161,9 +169,9 @@ public class FTC201718_Telop extends OpMode
 
 
         //Limit Arm
-        if (  (GP1_LeftStickY < 0 && sensors.limitArmDown.isPressed()) || ( GP1_LeftStickY > 0  && sensors.limitArmUp.isPressed()))
+        if (  (GP2_RightStickY < 0 && sensors.limitArmDown.isPressed()) || ( GP2_RightStickY > 0  && sensors.limitArmUp.isPressed()))
         {
-            GP1_LeftStickY = 0;
+            GP2_RightStickY = 0;
         }
 
         //Opens Jaw
@@ -192,16 +200,32 @@ public class FTC201718_Telop extends OpMode
             actuators.ServoArm.setPosition(TailDown);
         }
 
-        actuators.YFrontArm.setPower(GP1_LeftStickY);
+        actuators.YFrontArm.setPower(GP2_RightStickY);
 
 
 
+    }
+
+    public void stopMotors()
+    {
+        actuators.FrontLeft.setPower(0);
+        actuators.FrontRight.setPower(0);
+        actuators.RearLeft.setPower(0);
+        actuators.RearRight.setPower(0);
+        actuators.YFrontArm.setPower(0);
     }
 
     //Code that runs when STOP is hit
     @Override
     public void stop()
     {
+        stopMotors();
+        //TEMP
+        actuators.FrontLeft.setDirection(DcMotor.Direction.FORWARD);
+        actuators.FrontRight.setDirection(DcMotor.Direction.REVERSE);
+        actuators.RearLeft.setDirection(DcMotor.Direction.FORWARD);
+        actuators.RearRight.setDirection(DcMotor.Direction.REVERSE);
+        //EMD TEMp
         telemetry.addData("Status" , "Telop has stopped");
         telemetry.update();
     }

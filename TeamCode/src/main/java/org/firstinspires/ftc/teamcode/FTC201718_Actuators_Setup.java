@@ -67,10 +67,12 @@ public class FTC201718_Actuators_Setup
         RearRight  = hwMap.dcMotor.get("rear_right");
         YFrontArm  = hwMap.dcMotor.get("Y_Arm");
 
+        //Autonomous
         FrontLeft.setDirection(DcMotor.Direction.FORWARD);
-        FrontRight.setDirection(DcMotor.Direction.FORWARD);
+        FrontRight.setDirection(DcMotor.Direction.REVERSE);
+        RearLeft.setDirection(DcMotor.Direction.FORWARD);
         RearRight.setDirection(DcMotor.Direction.REVERSE);
-        RearLeft.setDirection(DcMotor.Direction.REVERSE);
+
 
         //Set all motors to zero power
         /*
