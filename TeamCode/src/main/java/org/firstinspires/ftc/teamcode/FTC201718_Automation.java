@@ -228,6 +228,9 @@ abstract public class FTC201718_Automation extends LinearOpMode
         actuators.RearLeft.setPower(0);
         actuators.RearRight.setPower(0);
         actuators.YFrontArm.setPower(0);
+
+        sensors.LeftColorSensor.enableLed(false);
+        sensors.RightColorSensor.enableLed(false);
     }
 
     public void encoderReset()
@@ -324,17 +327,29 @@ abstract public class FTC201718_Automation extends LinearOpMode
         return returner;
     }
 
-    public void CylpherGraber (boolean Open)
+    public void CylpherGraber (int stage)
     {
-        if (Open)
+        //Opens servos
+        if (stage == 0)
         {
             actuators.LeftGlyphHolder.setPosition(0.325);
             actuators.RightGlyphHolder.setPosition(0.65);
         }
-        else
+        //Closes Servos
+        else if (stage == 1)
         {
             actuators.LeftGlyphHolder.setPosition(1);
             actuators.RightGlyphHolder.setPosition(-0.1);
+        }
+        //
+        else if (stage == 0.5)
+        {
+            actuators.LeftGlyphHolder.setPosition(0.898);
+            actuators.RightGlyphHolder.setPosition(0.213);
+        }
+        else
+        {
+
         }
     }
 

@@ -66,7 +66,7 @@ public class FTC201718_AutoBlue extends FTC201718_Automation
         LeftBallColor = 0;
 
         // Move ServoArm down and detect color and based on the color rotate
-        CylpherGraber(false);
+        CylpherGraber(1);
         ServoArmDown(true);
         LeftBallColor = LeftBallColorDetect();
         if (LeftBallColor == -1)
