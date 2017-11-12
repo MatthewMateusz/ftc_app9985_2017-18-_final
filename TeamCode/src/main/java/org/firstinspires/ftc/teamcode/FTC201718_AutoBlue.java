@@ -23,7 +23,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 @Autonomous (name = "BlueAuto_WIP")
 public class FTC201718_AutoBlue extends FTC201718_Automation
 {
-    public static final double ServoArm_Down = 1;
+    public static final double ServoArm_Down = 0.7;
     public static final double ServoArm_Up   = 0;
 
     @Override
@@ -65,9 +65,9 @@ public class FTC201718_AutoBlue extends FTC201718_Automation
         int LeftBallColor;
         LeftBallColor = 0;
 
-        // Move ServoArm down and detech color and based on the color rotate
+        // Move ServoArm down and detect color and based on the color rotate
         CylpherGraber(false);
-        actuators.ServoArm.setPosition(ServoArm_Down);
+        ServoArmDown(true);
         LeftBallColor = LeftBallColorDetect();
         if (LeftBallColor == -1)
         {
@@ -77,6 +77,7 @@ public class FTC201718_AutoBlue extends FTC201718_Automation
         {
             encoderTurnInPlace(0.5 , -90 , 5);
         }
+        ServoArmDown(false);
     }
 
 

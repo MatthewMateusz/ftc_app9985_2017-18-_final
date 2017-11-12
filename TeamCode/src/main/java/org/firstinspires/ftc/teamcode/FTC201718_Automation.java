@@ -193,6 +193,9 @@ abstract public class FTC201718_Automation extends LinearOpMode
 
     public void waitForStartAndDisplayWhileWaiting()
     {
+        sensors.LeftColorSensor.enableLed(true);
+        sensors.LeftColorSensor.enableLed(true);
+
         while (!isStarted() && !isStopRequested())
         {
             //insert telemetry data for sensors and other data
@@ -211,6 +214,8 @@ abstract public class FTC201718_Automation extends LinearOpMode
             telemetry.update();
             idle();
         }
+        sensors.LeftColorSensor.enableLed(false);
+        sensors.LeftColorSensor.enableLed(false);
     }
 
     public void fullStop()
@@ -287,6 +292,8 @@ abstract public class FTC201718_Automation extends LinearOpMode
 
     public int LeftBallColorDetect ()
     {
+        sensors.LeftColorSensor.enableLed(true);
+        sensors.RightColorSensor.enableLed(true);
 
         int returner;
         //1 is left ball is red
@@ -312,6 +319,8 @@ abstract public class FTC201718_Automation extends LinearOpMode
         }
 
 
+        sensors.LeftColorSensor.enableLed(false);
+        sensors.RightColorSensor.enableLed(false);
         return returner;
     }
 
@@ -326,6 +335,18 @@ abstract public class FTC201718_Automation extends LinearOpMode
         {
             actuators.LeftGlyphHolder.setPosition(1);
             actuators.RightGlyphHolder.setPosition(-0.1);
+        }
+    }
+
+    public void ServoArmDown (boolean Down)
+    {
+        if (Down)
+        {
+            actuators.ServoArm.setPosition(sensors.TailDown);
+        }
+        else
+        {
+            actuators.ServoArm.setPosition(sensors.TailUp);
         }
     }
 }

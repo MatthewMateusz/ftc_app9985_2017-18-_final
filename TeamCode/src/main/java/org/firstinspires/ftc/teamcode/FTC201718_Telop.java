@@ -18,8 +18,6 @@ public class FTC201718_Telop extends OpMode
 
     public static final double OpenJaw  = 1;
     public static final double CloseJaw = 0.5;
-    public static final double TailUp   = -0.1;
-    public static final double TailDown = 0.6;
 
     private static final double Deadzone = 0.1;
 
@@ -100,7 +98,7 @@ public class FTC201718_Telop extends OpMode
         //boolean GP2_LeftStickButton  = gamepad2.left_stick_button;
         //boolean GP2_RightStickButton = gamepad2.right_stick_button;
         //boolean GP2_LeftBumper       = gamepad1.left_bumper;
-        //boolean GP2_RightBumper      = gamepad1.right_bumper;
+        boolean GP2_RightBumper      = gamepad1.right_bumper;
 
         //double GP2_LeftTrigger  = gamepad2.left_trigger;
         //double GP2_RightTrigger = gamepad2.right_trigger;
@@ -122,7 +120,6 @@ public class FTC201718_Telop extends OpMode
         mode = "";
 
         GP1_RightStickY  = 0.25 * GP1_RightStickY;
-        GP1_RightStickX  = 0.25 * GP1_RightStickX;
         GP1_LeftTrigger  = 0.25 * GP1_LeftTrigger;
         GP1_RightTrigger = 0.25 * GP1_RightTrigger;
 
@@ -130,7 +127,6 @@ public class FTC201718_Telop extends OpMode
         if (GP1_LeftBumper)
         {
             GP1_RightStickY  = 4 * GP1_RightStickY;
-            GP1_RightStickX  = 4 * GP1_RightStickX;
             GP1_LeftTrigger  = 4 * GP1_LeftTrigger;
             GP1_RightTrigger = 4 * GP1_RightTrigger;
             mode = "Fast ";
@@ -167,37 +163,47 @@ public class FTC201718_Telop extends OpMode
             }
         }
 
-
         //Limit Arm
         if (  (GP2_RightStickY < 0 && sensors.limitArmDown.isPressed()) || ( GP2_RightStickY > 0  && sensors.limitArmUp.isPressed()))
         {
             GP2_RightStickY = 0;
         }
 
-        //Opens Jaw
-        if (GP2_ButtonA)
+        if (!GP2_RightBumper)
         {
-            actuators.LeftGlyphHolder.setPosition(0.325);
-            actuators.RightGlyphHolder.setPosition(0.75);
-        }
+            //Opens Jaw
+            if (GP2_ButtonA)
+            {
+                actuators.LeftGlyphHolder.setPosition(0.325);
+                actuators.RightGlyphHolder.setPosition(0.75);
+            }
 
-        //Closes Jaw
-        if (GP2_ButtonX)
-        {
-            actuators.LeftGlyphHolder.setPosition(1);
-            actuators.RightGlyphHolder.setPosition(-0.1);
-        }
+            if (GP2_ButtonY)
+            {
+                actuators.LeftGlyphHolder.setPosition(0.898);
+                actuators.RightGlyphHolder.setPosition(0.213);
+            }
 
-        //Tail Up
-        if (GP2_ButtonY)
-        {
-            actuators.ServoArm.setPosition(TailUp);
+            //Closes Jaw
+            if (GP2_ButtonX)
+            {
+                actuators.LeftGlyphHolder.setPosition(1);
+                actuators.RightGlyphHolder.setPosition(-0.1);
+            }
         }
-
-        //Tail Down
-        if (GP2_ButtonB)
+        else
         {
-            actuators.ServoArm.setPosition(TailDown);
+            //Tail Up
+            if (GP2_ButtonY)
+            {
+                actuators.ServoArm.setPosition(sensors.TailUp);
+            }
+
+            //Tail Down
+            if (GP2_ButtonB)
+            {
+                actuators.ServoArm.setPosition(sensors.TailDown);
+            }
         }
 
         actuators.YFrontArm.setPower(GP2_RightStickY);
