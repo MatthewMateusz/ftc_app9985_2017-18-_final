@@ -28,11 +28,11 @@ abstract public class FTC201718_Automation extends LinearOpMode
 
     //Drive Constants
     public static final double SPEED_FULL   = 1;
-    public static final double SPEED_NORMAL = 0.5;
+    public static final double SPEED_NORMAL = 0.3;
     public static final double SPEED_SLOW   = 0.1;
 
     //Turn Constants
-    public static final double SPEED_TURN = 0.4;
+    public static final double SPEED_TURN = 0.3;
     public static final double ANGLE_90   = 90.0;
     public static final double TURN_LEFT  = -ANGLE_90;
     public static final double TURN_RIGHT = ANGLE_90;
@@ -98,7 +98,7 @@ abstract public class FTC201718_Automation extends LinearOpMode
             newFrontLeftTarget = actuators.FrontLeft.getCurrentPosition() + (int) (FrontLeftEncoderTicks);
             newFrontRightTarget = actuators.FrontRight.getCurrentPosition() + (int) (FrontRightEncoderTicks);
             newRearLeftTarget = actuators.RearLeft.getCurrentPosition() + (int) (RearLeftEncoderTicks);
-            newRearRightTarget = actuators.RearRight.getCurrentPosition() + (int) (RearLeftEncoderTicks);
+            newRearRightTarget = actuators.RearRight.getCurrentPosition() + (int) (RearRightEncoderTicks);
 
             actuators.FrontLeft.setTargetPosition(newFrontLeftTarget);
             actuators.FrontRight.setTargetPosition(newFrontRightTarget);
@@ -187,7 +187,7 @@ abstract public class FTC201718_Automation extends LinearOpMode
         }
         double encoder_distance = inches * actuators.COUNTS_PER_ASIDE;
 
-        encoderDrive4(speed , encoder_distance , encoder_distance , -encoder_distance , -encoder_distance , timeoutS);
+        encoderDrive4(speed , encoder_distance , -encoder_distance , -encoder_distance , encoder_distance , timeoutS);
     }
 
 
@@ -293,7 +293,7 @@ abstract public class FTC201718_Automation extends LinearOpMode
         return matrix.formatAsTransform();
     }
 
-    public int LeftBallColorDetect ()
+    public int LeftBallColorDetectMultiSensor ()
     {
         sensors.LeftColorSensor.enableLed(true);
         sensors.RightColorSensor.enableLed(true);
@@ -308,24 +308,56 @@ abstract public class FTC201718_Automation extends LinearOpMode
             //Left ball is red
             //Right ball is blue
             returner = 1;
-        }
-        else if (sensors.LeftColorSensor.red() < sensors.RightColorSensor.red() && sensors.LeftColorSensor.blue() > sensors.RightColorSensor.blue())
+        } else if (sensors.LeftColorSensor.red() < sensors.RightColorSensor.red() && sensors.LeftColorSensor.blue() > sensors.RightColorSensor.blue())
         {
             //Left Ball is blue
             //Right ball is red
             returner = -1;
-        }
-        else
+        } else
         {
             //Failed to detect
             returner = 0;
         }
 
-
         sensors.LeftColorSensor.enableLed(false);
         sensors.RightColorSensor.enableLed(false);
         return returner;
     }
+
+        public int LeftBallColorDetectOneSensor ()
+        {
+            sensors.LeftColorSensor.enableLed(true);
+            sleep(2000);
+
+            int returner;
+            //1 is left ball is red
+            //-1 is left ball is blue
+            returner = 0;
+
+            if (sensors.LeftColorSensor.red() > sensors.LeftColorSensor.blue())
+            {
+                //Left ball is red
+                //Right ball is blue
+                returner = 1;
+            }
+            else if (sensors.LeftColorSensor.red() < sensors.LeftColorSensor.blue())
+            {
+                //Left Ball is blue
+                //Right ball is red
+                returner = -1;
+            }
+            else
+            {
+                //Failed to detect
+                returner = 0;
+            }
+
+
+            sensors.LeftColorSensor.enableLed(false);
+            sensors.RightColorSensor.enableLed(false);
+            sleep(2000);
+            return returner;
+        }
 
     public void CylpherGraber (int stage)
     {
@@ -363,5 +395,28 @@ abstract public class FTC201718_Automation extends LinearOpMode
         {
             actuators.ServoArm.setPosition(sensors.TailUp);
         }
+    }
+
+    public void SleepMili (int Millisleep)
+    {
+        try
+        {
+            Thread.sleep(Millisleep);
+        }
+        catch (Exception e)
+        {
+
+        }
+    }
+
+    public void LiftArmSecond(int Milliseconds)
+    {
+        runtime.reset();
+        actuators.YFrontArm.setPower(0.5);
+        while ( !sensors.limitArmUp.isPressed() && (runtime.milliseconds() <= Milliseconds) )
+        {
+            idle();
+        }
+        actuators.YFrontArm.setPower(0);
     }
 }

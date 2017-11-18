@@ -1,27 +1,13 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.vuforia.HINT;
-import com.vuforia.Vuforia;
-
-import org.firstinspires.ftc.robotcore.external.ClassFactory;
-import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
-import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
-import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
-import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
-import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
-import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 
 /**
  * Created by Matthew on 9/27/2017.
  */
 
-@Autonomous (name = "BlueAuto_WIP")
-public class FTC201718_AutoBlue extends FTC201718_Automation
+@Autonomous (name = "RedAuto_WIP")
+public class FTC201718_AutoRed extends FTC201718_Automation
 {
     public static final double ServoArm_Down = 0.7;
     public static final double ServoArm_Up   = 0;
@@ -75,12 +61,12 @@ public class FTC201718_AutoBlue extends FTC201718_Automation
         LeftBallColor = LeftBallColorDetectOneSensor();
         if (LeftBallColor == -1)
         {
-            encoderTurnInPlace(0.5 , 30 , 3);
+            encoderTurnInPlace(0.5 , -30 , 3);
             //encoderDriveAside(1 , -8 , 3);
         }
         else
         {
-            encoderTurnInPlace(0.5 , -30 , 3);
+            encoderTurnInPlace(0.5 , 30 , 3);
             //encoderDriveAside(1 , 8 , 3);
         }
         ServoArmDown(false);
