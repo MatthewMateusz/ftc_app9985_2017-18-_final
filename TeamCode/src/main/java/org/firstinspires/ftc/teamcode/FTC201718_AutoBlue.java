@@ -75,15 +75,37 @@ public class FTC201718_AutoBlue extends FTC201718_Automation
         LeftBallColor = LeftBallColorDetectOneSensor();
         if (LeftBallColor == -1)
         {
-            encoderTurnInPlace(0.5 , 30 , 3);
-            //encoderDriveAside(1 , -8 , 3);
+            encoderTurnInPlace(0.3 , 30 , 3);
+            ServoArmDown(false);
+            sleep(500);
+            encoderTurnInPlace(0.3 , 60 , 3);
+            sleep(100);
+            encoderDriveDistance(0.3 , -27 , 3);
+            encoderTurnInPlace( 0.3 , 90 , 3);
+            encoderDriveDistance(0.2 , 18 , 5);
+        }
+        else if (LeftBallColor == 1)
+        {
+            encoderTurnInPlace(0.3 , -30 , 3);
+            ServoArmDown(false);
+            sleep(500);
+            encoderTurnInPlace(0.3 , -60 , 3);
+            sleep(100);
+            encoderDriveDistance(0.3 , 27 , 3);
+            encoderTurnInPlace( 0.3 , -90 , 3);
+            encoderDriveDistance(0.2 , 18 , 5);
         }
         else
         {
-            encoderTurnInPlace(0.5 , -30 , 3);
-            //encoderDriveAside(1 , 8 , 3);
+            telemetry.addData("Status: " , "Failed To Detect Color");
+            ServoArmDown(false);
+            sleep(500);
+            encoderTurnInPlace(0.3 , 90 , 3);
+            encoderDriveDistance(0.3 , -27 , 3);
+            encoderTurnInPlace( 0.3 , 90 , 3);
+            encoderDriveDistance(0.2 , 18 , 5);
         }
-        ServoArmDown(false);
+
     }
 
 
