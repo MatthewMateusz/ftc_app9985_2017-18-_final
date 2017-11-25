@@ -24,7 +24,8 @@ public class FTC201718_Actuators_Setup
     public DcMotor YFrontArm  = null;
 
     public static final double COUNTS_PER_INCHES    = 90.0;         // to be calibrated empircally
-    public static final double COUNTS_PER_ANGLE     = 1703.0/90.0;  // to be calibrated empircally
+    public static final double COUNTS_PER_ANGLE_NEG     = 1751.0/90.0;  // to be calibrated empircally
+    public static final double COUNTS_PER_ANGLE_POS     = 1703.0/90.0;  // to be calibrated empircally
     public static final double COUNTS_PER_ASIDE     = 120.0;        // to be calibrated empircally
 
     //Declares servos on robot

@@ -32,7 +32,7 @@ abstract public class FTC201718_Automation extends LinearOpMode
     public static final double SPEED_SLOW   = 0.1;
 
     //Turn Constants
-    public static final double SPEED_TURN = 0.3;
+    public static final double SPEED_TURN = 0.2;
     public static final double ANGLE_90   = 90.0;
     public static final double TURN_LEFT  = -ANGLE_90;
     public static final double TURN_RIGHT = ANGLE_90;
@@ -171,7 +171,17 @@ abstract public class FTC201718_Automation extends LinearOpMode
             speed = -speed;
             degrees = -degrees;
         }
-        double encoder_distance = degrees * actuators.COUNTS_PER_ANGLE;
+
+        double encoder_distance = 0;
+        if (degrees >= 0)
+        {
+            encoder_distance = degrees * actuators.COUNTS_PER_ANGLE_POS;
+        }
+        else
+        {
+            encoder_distance = degrees * actuators.COUNTS_PER_ANGLE_NEG;
+        }
+
 
         encoderDrive4(speed , encoder_distance , -encoder_distance , encoder_distance , -encoder_distance , timeoutS);
     }
@@ -352,11 +362,11 @@ abstract public class FTC201718_Automation extends LinearOpMode
                 //Failed to detect
                 returner = 0;
             }
-                sleep(500);
+
 
             sensors.LeftColorSensor.enableLed(false);
             sensors.RightColorSensor.enableLed(false);
-            sleep(500);
+            sleep(1000);
             return returner;
         }
 
@@ -374,7 +384,7 @@ abstract public class FTC201718_Automation extends LinearOpMode
             actuators.LeftGlyphHolder.setPosition(1);
             actuators.RightGlyphHolder.setPosition(-0.1);
         }
-        //
+        //Drop Block
         else if (stage == 0.5)
         {
             actuators.LeftGlyphHolder.setPosition(0.898);
@@ -384,6 +394,7 @@ abstract public class FTC201718_Automation extends LinearOpMode
         {
 
         }
+        sleep(1000);
     }
 
     public void ServoArmDown (boolean Down)
@@ -396,19 +407,9 @@ abstract public class FTC201718_Automation extends LinearOpMode
         {
             actuators.ServoArm.setPosition(sensors.TailUp);
         }
+        sleep(1000);
     }
 
-    public void SleepMili (int Millisleep)
-    {
-        try
-        {
-            Thread.sleep(Millisleep);
-        }
-        catch (Exception e)
-        {
-
-        }
-    }
 
     public void LiftArmSecond(int Milliseconds)
     {
@@ -419,5 +420,8 @@ abstract public class FTC201718_Automation extends LinearOpMode
             idle();
         }
         actuators.YFrontArm.setPower(0);
+        sleep(1000);
     }
+
+
 }

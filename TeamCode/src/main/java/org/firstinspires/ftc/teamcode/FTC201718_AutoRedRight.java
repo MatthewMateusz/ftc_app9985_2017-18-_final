@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
  * Created by Matthew on 9/27/2017.
  */
 
-@Autonomous (name = "RedAuto_WIP")
-public class FTC201718_AutoRed extends FTC201718_Automation
+@Autonomous (name = "RedAuto Right Platform")
+public class FTC201718_AutoRedRight extends FTC201718_Automation
 {
     public static final double ServoArm_Down = 0.7;
     public static final double ServoArm_Up   = 0;
