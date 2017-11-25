@@ -59,28 +59,32 @@ public class FTC201718_AutoRed extends FTC201718_Automation
         ServoArmDown(true);
         sleep(1500);
         LeftBallColor = LeftBallColorDetectOneSensor();
-        if (LeftBallColor == 1)
+        if (LeftBallColor == -1)
         {
             encoderTurnInPlace(0.5 , 30 , 3);
             ServoArmDown(false);
             sleep(500);
             encoderTurnInPlace(0.3 , 60 , 3);
             sleep(100);
-            encoderDriveDistance(0.3 , -27 , 3);
+            encoderDriveDistance(0.3 , -29 , 3); //Changed
             encoderTurnInPlace( 0.3 , 90 , 3);
-            encoderDriveDistance(0.2 , 18 , 5);
+            encoderDriveDistance(0.2 , 9 , 5);
+            CylpherGraber(0);
+            encoderDriveDistance(0.2 , -2 , 2);
 
         }
-        else if (LeftBallColor == -1)
+        else if (LeftBallColor == 1)
         {
             encoderTurnInPlace(0.3 , -30 , 3);
             ServoArmDown(false);
             sleep(500);
             encoderTurnInPlace(0.3 , -60 , 3);
             sleep(100);
-            encoderDriveDistance(0.3 , 27 , 3);
+            encoderDriveDistance(0.3 , 29 , 3); //Changed
             encoderTurnInPlace( 0.3 , -90 , 3);
-            encoderDriveDistance(0.2 , 18 , 5);
+            encoderDriveDistance(0.2 , 9 , 5);
+            CylpherGraber(0);
+            encoderDriveDistance(0.2 , -2 , 2);
 
         }
         else
@@ -89,9 +93,11 @@ public class FTC201718_AutoRed extends FTC201718_Automation
             ServoArmDown(false);
             sleep(500);
             encoderTurnInPlace(0.3 , 90 , 3);
-            encoderDriveDistance(0.3 , -27 , 3);
+            encoderDriveDistance(0.3 , -29 , 3); //Changes
             encoderTurnInPlace( 0.3 , 90 , 3);
-            encoderDriveDistance(0.2 , 18 , 5);
+            encoderDriveDistance(0.2 , 9 , 5);
+            CylpherGraber(0);
+            encoderDriveDistance(0.2 , -2 , 2);
         }
 
     }

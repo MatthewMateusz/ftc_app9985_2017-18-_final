@@ -150,7 +150,7 @@ public class FTC201718_Telop extends OpMode
         }
         else
         {
-            if (Math.abs(GP1_RightStickY) < Math.abs(GP1_RightStickX))
+            if (Math.abs(GP1_RightStickY) < Math.abs(GP1_RightStickX * 0.25))
             {
                 MoveVertical(GP1_RightStickX);
                 mode += "Horizontal";

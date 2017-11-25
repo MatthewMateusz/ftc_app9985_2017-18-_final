@@ -327,7 +327,8 @@ abstract public class FTC201718_Automation extends LinearOpMode
         public int LeftBallColorDetectOneSensor ()
         {
             sensors.LeftColorSensor.enableLed(true);
-            sleep(2000);
+            sensors.RightColorSensor.enableLed(true);
+            sleep(1000);
 
             int returner;
             //1 is left ball is red
@@ -351,11 +352,11 @@ abstract public class FTC201718_Automation extends LinearOpMode
                 //Failed to detect
                 returner = 0;
             }
-
+                sleep(500);
 
             sensors.LeftColorSensor.enableLed(false);
             sensors.RightColorSensor.enableLed(false);
-            sleep(2000);
+            sleep(500);
             return returner;
         }
 
