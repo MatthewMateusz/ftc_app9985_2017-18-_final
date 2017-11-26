@@ -32,7 +32,8 @@ abstract public class FTC201718_Automation extends LinearOpMode
     public static final double SPEED_SLOW   = 0.1;
 
     //Turn Constants
-    public static final double SPEED_TURN = 0.2;
+    public static final double SPEED_TURN_PLAT = 0.1;
+    public static final double SPEED_TURN_TILE = 0.2;
     public static final double ANGLE_90   = 90.0;
     public static final double TURN_LEFT  = -ANGLE_90;
     public static final double TURN_RIGHT = ANGLE_90;
@@ -370,7 +371,7 @@ abstract public class FTC201718_Automation extends LinearOpMode
             return returner;
         }
 
-    public void CylpherGraber (int stage)
+    public void CylpherGraber (double stage)
     {
         //Opens servos
         if (stage == 0)

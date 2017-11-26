@@ -75,42 +75,25 @@ public class FTC201718_AutoBlueLeft extends FTC201718_Automation
         LeftBallColor = LeftBallColorDetectOneSensor();
         if (LeftBallColor == 1) //Left ball is red
         {
-            encoderTurnInPlace(SPEED_TURN , 30 , 3);
+            encoderTurnInPlace(SPEED_TURN_PLAT , 30 , TOUT_LONG);
             ServoArmDown(false);
-            encoderTurnInPlace(SPEED_TURN , 60 , 3);
-            encoderDriveAside(0.3 , -2 , TOUT_SHORT);
-            encoderDriveDistance(SPEED_NORMAL , -30 + OffSet , 3);
-            encoderTurnInPlace( SPEED_TURN , 90 , 3);
-            encoderDriveDistance(0.2 , 9 , 5);
-            CylpherGraber(0);
-            encoderDriveDistance(0.2 , -6 , 2);
+            encoderTurnInPlace(SPEED_TURN_PLAT , -30 , TOUT_LONG);
         }
         else if (LeftBallColor == -1) //Left ball is blue
         {
-            encoderTurnInPlace(SPEED_TURN , -30 , 3);
+            encoderTurnInPlace(SPEED_TURN_PLAT , -30 , TOUT_LONG);
             ServoArmDown(false);
-            encoderTurnInPlace(SPEED_TURN , -60 , 3);
-            encoderDriveAside(0.1 , 4 , TOUT_SHORT);
-            encoderDriveDistance(SPEED_NORMAL , 27 + OffSet , 3);
-            encoderTurnInPlace( SPEED_TURN , -90 , 3);
-            encoderDriveDistance(0.2 , 9 , 5);
-            CylpherGraber(0);
-            encoderDriveDistance(0.2 , -6 , 2);
+            encoderTurnInPlace(SPEED_TURN_PLAT , 30 , TOUT_LONG);
         }
         else
         {
             telemetry.addData("AUTO: " , "Failed To Detect Color");
             ServoArmDown(false);
-            encoderDriveDistance(0.1 , 4 , TOUT_SHORT);
-            encoderTurnInPlace(SPEED_TURN , 90 , 3);
-            encoderDriveDistance(SPEED_NORMAL , -29 + OffSet , 3);
-            encoderTurnInPlace( SPEED_TURN , 90 , 3);
-            encoderDriveDistance(0.2 , 10 , 5);
-            CylpherGraber(0);
-            encoderDriveDistance(0.2 , -6 , 2);
         }
-
-
+        encoderDriveDistance(SPEED_SLOW , 4 , TOUT_MEDIUM);
+        encoderTurnInPlace(SPEED_TURN_TILE , -90 , TOUT_LONG);
+        encoderDriveDistance(SPEED_NORMAL , 36 , TOUT_LONG);
+        encoderDriveAside(SPEED_SLOW , 4 + OffSet , TOUT_LONG);
     }
 
 

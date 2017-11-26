@@ -60,42 +60,29 @@ public class FTC201718_AutoRedLeft extends FTC201718_Automation
         LeftBallColor = LeftBallColorDetectOneSensor();
         if (LeftBallColor == -1)
         {
-            encoderTurnInPlace(SPEED_TURN , 30 , 3);
+            encoderTurnInPlace(SPEED_TURN_PLAT , 30 , 3);
             ServoArmDown(false);
-            encoderTurnInPlace(SPEED_TURN , 60 , 3);
-            encoderDriveAside(0.3 , -2 , TOUT_SHORT);
-            encoderDriveDistance(SPEED_NORMAL , 26 + OffSet, 3); //Changed
-            encoderTurnInPlace( SPEED_TURN , 90 , 3);
-            encoderDriveDistance(0.2 , 9 , 5);
-            CylpherGraber(0);
-            encoderDriveDistance(0.2 , -6 , 2);
-
+            encoderTurnInPlace(SPEED_TURN_PLAT , -30 , 3);
         }
         else if (LeftBallColor == 1)
         {
-            encoderTurnInPlace(SPEED_TURN , -30 , 3);
+            encoderTurnInPlace(SPEED_TURN_PLAT , -30 , 3);
             ServoArmDown(false);
-            encoderTurnInPlace(SPEED_TURN , -60 , 3);
-            encoderDriveAside(0.1 , 4 , TOUT_SHORT);
-            encoderDriveDistance(SPEED_NORMAL , -27 + OffSet , 3); //Changed
-            encoderTurnInPlace( SPEED_TURN , -90 , 3);
-            encoderDriveDistance(0.2 , 10 , 5);
-            CylpherGraber(0);
-            encoderDriveDistance(0.2 , -6 , 2);
-
+            encoderTurnInPlace(SPEED_TURN_PLAT , 60 , 3);
         }
         else
         {
             telemetry.addData("Status: " , "Failed To Detect Color");
             ServoArmDown(false);
-            encoderDriveDistance(0.1 , 4 , TOUT_SHORT);
-            encoderTurnInPlace(SPEED_TURN , 90 , 3);
-            encoderDriveDistance(SPEED_NORMAL , 28 + OffSet , 3); //Changes
-            encoderTurnInPlace( SPEED_TURN , 90 , 3);
-            encoderDriveDistance(0.2 , 9 , 5);
-            CylpherGraber(0);
-            encoderDriveDistance(0.2 , -6 , 2);
+            encoderDriveDistance(SPEED_SLOW , 4 , TOUT_MEDIUM);
         }
+        encoderDriveDistance(SPEED_SLOW , 4 , TOUT_MEDIUM);
+        encoderTurnInPlace(SPEED_TURN_PLAT , 90 , TOUT_MEDIUM);
+        encoderDriveDistance(SPEED_NORMAL , 27 + OffSet , TOUT_LONG);
+        encoderTurnInPlace(SPEED_TURN_TILE , 90 , TOUT_MEDIUM);
+        encoderDriveDistance(SPEED_NORMAL , 9 , TOUT_MEDIUM);
+        CylpherGraber(0.5);
+        encoderDriveDistance(SPEED_SLOW , -4 , TOUT_MEDIUM);
 
     }
 
