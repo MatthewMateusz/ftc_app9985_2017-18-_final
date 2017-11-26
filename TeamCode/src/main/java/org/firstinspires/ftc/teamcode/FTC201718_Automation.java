@@ -371,44 +371,54 @@ abstract public class FTC201718_Automation extends LinearOpMode
             return returner;
         }
 
-    public void CylpherGraber (double stage)
+    public class BlockGrabber
     {
-        //Opens servos
-        if (stage == 0)
+        public void waitForAction ()
+        {
+            sleep(1000);
+        }
+
+        public void open ()
         {
             actuators.LeftGlyphHolder.setPosition(0.325);
             actuators.RightGlyphHolder.setPosition(0.65);
+            waitForAction();
         }
-        //Closes Servos
-        else if (stage == 1)
-        {
-            actuators.LeftGlyphHolder.setPosition(1);
-            actuators.RightGlyphHolder.setPosition(-0.1);
-        }
-        //Drop Block
-        else if (stage == 0.5)
+
+        public void release ()
         {
             actuators.LeftGlyphHolder.setPosition(0.898);
             actuators.RightGlyphHolder.setPosition(0.213);
+            waitForAction();
         }
-        else
-        {
 
+        public void close ()
+        {
+            actuators.LeftGlyphHolder.setPosition(1);
+            actuators.RightGlyphHolder.setPosition(-0.1);
+            waitForAction();
         }
-        sleep(1000);
     }
 
-    public void ServoArmDown (boolean Down)
+
+    public class ServoArm
     {
-        if (Down)
+        public void waitForAction ()
+        {
+            sleep(1000);
+        }
+
+        public void down ()
         {
             actuators.ServoArm.setPosition(sensors.TailDown);
+            waitForAction();
         }
-        else
+
+        public void up  ()
         {
             actuators.ServoArm.setPosition(sensors.TailUp);
+            waitForAction();
         }
-        sleep(1000);
     }
 
 

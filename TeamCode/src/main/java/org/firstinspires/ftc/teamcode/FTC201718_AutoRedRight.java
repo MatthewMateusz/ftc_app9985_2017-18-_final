@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.google.blocks.ftcrobotcontroller.runtime.Block;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 /**
@@ -11,6 +12,9 @@ public class FTC201718_AutoRedRight extends FTC201718_Automation
 {
     public static final double ServoArm_Down = 0.7;
     public static final double ServoArm_Up   = 0;
+
+    public ServoArm ServoArm = new ServoArm();
+    public BlockGrabber BlockGrabber = new BlockGrabber();
 
     @Override
     public void runOpMode() throws InterruptedException
@@ -54,31 +58,34 @@ public class FTC201718_AutoRedRight extends FTC201718_Automation
         LeftBallColor = 0;
 
         // Move ServoArm down and detect color and based on the color rotate
-        CylpherGraber(1);
+        BlockGrabber.close();
         LiftArmSecond(750);
-        ServoArmDown(true);
+        ServoArm.down();
         LeftBallColor = LeftBallColorDetectOneSensor();
         if (LeftBallColor == 1) //Left ball is red
         {
             encoderTurnInPlace(SPEED_TURN_PLAT , -30 , 3);
-            ServoArmDown(false);
+            ServoArm.up();
             encoderTurnInPlace(SPEED_TURN_PLAT , 30 , 3);
         }
         else if (LeftBallColor == -1) //Left ball is blue
         {
             encoderTurnInPlace(SPEED_TURN_PLAT , 30 , 3);
-            ServoArmDown(false);
+            ServoArm.up();
             encoderTurnInPlace(SPEED_TURN_PLAT , -30 , 3);
         }
         else
         {
             telemetry.addData("AUTO: " , "Failed To Detect Color");
-            ServoArmDown(false);
+            ServoArm.up();
         }
         encoderDriveDistance(SPEED_SLOW , 4 , TOUT_MEDIUM);
         encoderTurnInPlace(SPEED_TURN_PLAT , 90 , TOUT_LONG);
         encoderDriveDistance(SPEED_NORMAL , 36 , TOUT_LONG);
         encoderDriveAside(SPEED_SLOW , -4 + OffSet , TOUT_LONG);
+        encoderDriveDistance(SPEED_NORMAL , 9 , TOUT_MEDIUM);
+        BlockGrabber.release();
+        encoderDriveDistance(SPEED_SLOW , -4 , TOUT_MEDIUM);
 
 
     }
