@@ -29,6 +29,7 @@ public class FTC201718_AutoBlueLeft extends FTC201718_Automation
 
     public ServoArm ServoArm = new ServoArm();
     public BlockGrabber BlockGrabber = new BlockGrabber();
+    public Swing Swing = new Swing();
 
     @Override
     public void runOpMode() throws InterruptedException
@@ -78,15 +79,15 @@ public class FTC201718_AutoBlueLeft extends FTC201718_Automation
         LeftBallColor = LeftBallColorDetectOneSensor();
         if (LeftBallColor == 1) //Left ball is red
         {
-            encoderTurnInPlace(SPEED_TURN_PLAT , 30 , TOUT_LONG);
+            Swing.left();
+            Swing.center();
             ServoArm.up();
-            encoderTurnInPlace(SPEED_TURN_PLAT , -30 , TOUT_LONG);
         }
         else if (LeftBallColor == -1) //Left ball is blue
         {
-            encoderTurnInPlace(SPEED_TURN_PLAT , -30 , TOUT_LONG);
+            Swing.right();
+            Swing.center();
             ServoArm.up();
-            encoderTurnInPlace(SPEED_TURN_PLAT , 30 , TOUT_LONG);
         }
         else
         {
@@ -95,8 +96,8 @@ public class FTC201718_AutoBlueLeft extends FTC201718_Automation
         }
         encoderDriveDistance(SPEED_SLOW , 4 , TOUT_MEDIUM);
         encoderTurnInPlace(SPEED_TURN_TILE , -90 , TOUT_LONG);
-        encoderDriveDistance(SPEED_NORMAL , 36 , TOUT_LONG);
-        encoderDriveAside(SPEED_SLOW , 4 + OffSet , TOUT_LONG);
+        encoderDriveDistance(SPEED_NORMAL , 20 , TOUT_LONG);
+        encoderDriveAside(SPEED_SLOW , 1.5 + OffSet , TOUT_LONG);
         encoderDriveDistance(SPEED_NORMAL , 9 , TOUT_MEDIUM);
         BlockGrabber.release();
         encoderDriveDistance(SPEED_SLOW , -4 , TOUT_MEDIUM);

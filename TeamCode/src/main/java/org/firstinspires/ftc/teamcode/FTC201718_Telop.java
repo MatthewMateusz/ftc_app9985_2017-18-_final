@@ -195,7 +195,7 @@ public class FTC201718_Telop extends OpMode
             if (GP2_ButtonB)
             {
                 actuators.LeftGlyphHolder.setPosition(0);
-                actuators.RightGlyphHolder.setPosition(1);
+                actuators.RightGlyphHolder.setPosition(0.95);
             }
         }
         else

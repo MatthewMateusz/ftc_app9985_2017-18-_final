@@ -14,6 +14,7 @@ public class FTC201718_AutoRedLeft extends FTC201718_Automation
 
     public ServoArm ServoArm = new ServoArm();
     public BlockGrabber BlockGrabber = new BlockGrabber();
+    public Swing Swing = new Swing();
 
     @Override
     public void runOpMode() throws InterruptedException
@@ -63,15 +64,15 @@ public class FTC201718_AutoRedLeft extends FTC201718_Automation
         LeftBallColor = LeftBallColorDetectOneSensor();
         if (LeftBallColor == -1)
         {
-            encoderTurnInPlace(SPEED_TURN_PLAT , 30 , 3);
-            ServoArm.down();
-            encoderTurnInPlace(SPEED_TURN_PLAT , -30 , 3);
+            Swing.left();
+            Swing.center();
+            ServoArm.up();
         }
         else if (LeftBallColor == 1)
         {
-            encoderTurnInPlace(SPEED_TURN_PLAT , -30 , 3);
-            ServoArm.down();
-            encoderTurnInPlace(SPEED_TURN_PLAT , 60 , 3);
+            Swing.right();
+            Swing.center();
+            ServoArm.up();
         }
         else
         {

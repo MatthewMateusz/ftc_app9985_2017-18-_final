@@ -388,21 +388,47 @@ abstract public class FTC201718_Automation extends LinearOpMode
         public void release ()
         {
             actuators.LeftGlyphHolder.setPosition(0.898);
-            actuators.RightGlyphHolder.setPosition(0.213);
+            actuators.RightGlyphHolder.setPosition(0.113);
             waitForAction();
         }
 
         public void close ()
         {
             actuators.LeftGlyphHolder.setPosition(1);
-            actuators.RightGlyphHolder.setPosition(-0.1);
+            actuators.RightGlyphHolder.setPosition(0);
             waitForAction();
         }
     }
 
 
+    public class Swing
+    {
+        public void waitForAction ()
+        {
+            sleep(1000);
+        }
+
+        public void left() {
+            actuators.SwingArm.setPosition(0);
+            waitForAction();
+        }
+
+        public void center() {
+            actuators.SwingArm.setPosition(0.5);
+            waitForAction();
+        }
+
+        public void right() {
+            actuators.SwingArm.setPosition(1);
+            waitForAction();
+        }
+    }
+
     public class ServoArm
     {
+
+
+
         public void waitForAction ()
         {
             sleep(1000);

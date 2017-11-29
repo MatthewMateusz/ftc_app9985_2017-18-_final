@@ -12,6 +12,9 @@ public class FTC201718_AutoCalibrate extends FTC201718_Automation
     public static final double ServoArm_Down = 0.7;
     public static final double ServoArm_Up   = 0;
 
+    public ServoArm ServoArm = new ServoArm();
+    public BlockGrabber BlockGrabber = new BlockGrabber();
+
     @Override
     public void runOpMode() throws InterruptedException
     {
@@ -41,12 +44,22 @@ public class FTC201718_AutoCalibrate extends FTC201718_Automation
         //Add autonomous code here
         // encoderDriveDistance(0.2, 24.0,  3.0);
         // encoderDriveDistance(0.2, -48.0, 5.0);
-         encoderTurnInPlace(0.2, 90.0, 10.0);
-         encoderTurnInPlace(0.2, 90.0, 10.0);
-         encoderTurnInPlace(0.2, 90.0, 10.0);
-         encoderTurnInPlace(0.2, 90.0, 10.0);
+        // encoderTurnInPlace(0.2, 90.0, 10.0);
+        //encoderTurnInPlace(0.2, 90.0, 10.0);
+        //encoderTurnInPlace(0.2, 90.0, 10.0);
+        //encoderTurnInPlace(0.2, 90.0, 10.0);
         // encoderTurnInPlace(0.2, -360.0, 10.0);
         //encoderDriveAside(0.2, 24.0, 10.0);
+
+        /*
+        BlockGrabber.open();
+        sleep(5000);
+        BlockGrabber.close();
+        sleep(5000);
+        BlockGrabber.release();
+        sleep(5000);
+        */
+
 
         telemetry.addData("Status" , "Complete");
     }

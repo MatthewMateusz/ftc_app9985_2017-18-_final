@@ -30,6 +30,7 @@ public class FTC201718_Actuators_Setup
 
     //Declares servos on robot
     public Servo ServoArm         = null;
+    public Servo SwingArm         = null;
     public Servo LeftGlyphHolder  = null;
     public Servo RightGlyphHolder = null;
 
@@ -97,10 +98,12 @@ public class FTC201718_Actuators_Setup
         ServoArm         = hwMap.servo.get("servo_arm");
         LeftGlyphHolder  = hwMap.servo.get("servo_leftHolder");
         RightGlyphHolder = hwMap.servo.get("servo_rightHolder");
+        SwingArm         = hwMap.servo.get("servo_swing");
 
         //Set Servo Positions
         ServoArm.setPosition(0.0);
         LeftGlyphHolder.setPosition(0);
-        RightGlyphHolder.setPosition(1);
+        RightGlyphHolder.setPosition(0.95);
+        SwingArm.setPosition(0.5);
     }
 }
