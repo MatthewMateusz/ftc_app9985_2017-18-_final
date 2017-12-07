@@ -77,8 +77,7 @@ public class FTC201718_AutoRedLeft extends FTC201718_Automation
         else
         {
             telemetry.addData("Status: " , "Failed To Detect Color");
-            ServoArm.down();
-            encoderDriveDistance(SPEED_SLOW , 4 , TOUT_MEDIUM);
+            ServoArm.up();
         }
         encoderDriveDistance(SPEED_SLOW , 4 , TOUT_MEDIUM);
         encoderTurnInPlace(SPEED_TURN_PLAT , 90 , TOUT_MEDIUM);
