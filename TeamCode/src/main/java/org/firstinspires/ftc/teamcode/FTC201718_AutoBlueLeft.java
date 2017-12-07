@@ -94,14 +94,15 @@ public class FTC201718_AutoBlueLeft extends FTC201718_Automation
             telemetry.addData("AUTO: " , "Failed To Detect Color");
             ServoArm.up();
         }
-        encoderDriveDistance(SPEED_SLOW , 4 , TOUT_MEDIUM);
-        encoderTurnInPlace(SPEED_TURN_TILE , -90 , TOUT_LONG);
-        encoderDriveDistance(SPEED_NORMAL , 20 , TOUT_LONG);
-        encoderDriveAside(SPEED_SLOW , 1.5 + OffSet , TOUT_LONG);
-        encoderDriveDistance(SPEED_NORMAL , 9 , TOUT_MEDIUM);
+        encoderDriveDistance(SPEED_NORMAL , 12 , TOUT_MEDIUM);
+        encoderDriveAside(SPEED_SLOW , 4 , TOUT_LONG);
+        encoderDriveDistance(SPEED_NORMAL , 8 , TOUT_MEDIUM);
+        encoderDriveAside(SPEED_SLOW , 6 + OffSet, TOUT_LONG);
+        encoderDriveDistance(SPEED_SLOW , 9 , TOUT_LONG);
         BlockGrabber.release();
-        encoderDriveDistance(SPEED_SLOW , -4 , TOUT_MEDIUM);
+        encoderDriveDistance(SPEED_NORMAL , -4 , TOUT_MEDIUM);
     }
+
 
 
 }
