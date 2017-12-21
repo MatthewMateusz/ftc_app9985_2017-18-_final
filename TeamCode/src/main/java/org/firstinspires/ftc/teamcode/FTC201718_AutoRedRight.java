@@ -81,8 +81,8 @@ public class FTC201718_AutoRedRight extends FTC201718_Automation
             ServoArm.up();
         }
 
-        encoderDriveDistance(SPEED_NORMAL , -12 , TOUT_MEDIUM);
         encoderDriveAside(SPEED_SLOW , -4 , TOUT_LONG);
+        encoderDriveDistance(SPEED_NORMAL , -12 , TOUT_MEDIUM);
         encoderDriveDistance(SPEED_NORMAL , -8 + OffSet, TOUT_MEDIUM);
         encoderDriveAside(SPEED_SLOW , -6 + OffSet , TOUT_LONG); // OffSet needs to be negative
         encoderTurnInPlace(SPEED_TURN_TILE , 180 , TOUT_LONG);

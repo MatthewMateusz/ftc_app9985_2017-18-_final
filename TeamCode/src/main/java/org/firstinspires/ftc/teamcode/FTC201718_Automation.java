@@ -361,7 +361,33 @@ abstract public class FTC201718_Automation extends LinearOpMode
             else
             {
                 //Failed to detect
-                returner = 0;
+                for (int i = 0; i <= 5 ; i++)
+                {
+                    sleep(1000);
+                    double offSet = 0.025;
+                    double currentPosition;
+                    currentPosition = actuators.SwingArm.getPosition();
+                    actuators.SwingArm.setPosition(currentPosition + offSet);
+
+                    if (sensors.LeftColorSensor.red() > sensors.LeftColorSensor.blue())
+                    {
+                        //Left ball is red
+                        //Right ball is blue
+                        returner = 1;
+                        break;
+                    }
+                    else if (sensors.LeftColorSensor.red() < sensors.LeftColorSensor.blue())
+                    {
+                        //Left Ball is blue
+                        //Right ball is red
+                        returner = -1;
+                        break;
+                    }
+                    else
+                    {
+                        returner = 0;
+                    }
+                }
             }
 
 
@@ -421,6 +447,14 @@ abstract public class FTC201718_Automation extends LinearOpMode
         public void right() {
             actuators.SwingArm.setPosition(1);
             waitForAction();
+        }
+
+        public void offSet(double offSet)
+        {
+            double currentPosition = 0;
+            currentPosition = actuators.SwingArm.getPosition();
+
+            actuators.SwingArm.setPosition(currentPosition + offSet);
         }
     }
 
