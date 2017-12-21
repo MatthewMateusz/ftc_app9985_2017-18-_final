@@ -215,10 +215,10 @@ abstract public class FTC201718_Automation extends LinearOpMode
                     "  GRN " + sensors.LeftColorSensor.green() +
                     "  BLU " + sensors.LeftColorSensor.blue());
 
-            telemetry.addData("Right Color:  " ,
-                    "RED " + sensors.RightColorSensor.red() +
-                    "  GRN " + sensors.RightColorSensor.green() +
-                    "  BLU " + sensors.RightColorSensor.green());
+          //  telemetry.addData("Right Color:  " ,
+                   // "RED " + sensors.RightColorSensor.red() +
+                  //  "  GRN " + sensors.RightColorSensor.green() +
+                 //   "  BLU " + sensors.RightColorSensor.green());
 
             //Touch sensor data
 
@@ -241,7 +241,7 @@ abstract public class FTC201718_Automation extends LinearOpMode
         actuators.YFrontArm.setPower(0);
 
         sensors.LeftColorSensor.enableLed(false);
-        sensors.RightColorSensor.enableLed(false);
+        //sensors.RightColorSensor.enableLed(false);
     }
 
     public void encoderReset()
@@ -307,38 +307,38 @@ abstract public class FTC201718_Automation extends LinearOpMode
     public int LeftBallColorDetectMultiSensor ()
     {
         sensors.LeftColorSensor.enableLed(true);
-        sensors.RightColorSensor.enableLed(true);
+       // sensors.RightColorSensor.enableLed(true);
 
         int returner;
         //1 is left ball is red
         //-1 is left ball is blue
         returner = 0;
 
-        if (sensors.LeftColorSensor.red() > sensors.RightColorSensor.red() && sensors.LeftColorSensor.blue() < sensors.RightColorSensor.blue())
-        {
+        //if (sensors.LeftColorSensor.red() > sensors.RightColorSensor.red() && sensors.LeftColorSensor.blue() < sensors.RightColorSensor.blue())
+        //{
             //Left ball is red
             //Right ball is blue
-            returner = 1;
-        } else if (sensors.LeftColorSensor.red() < sensors.RightColorSensor.red() && sensors.LeftColorSensor.blue() > sensors.RightColorSensor.blue())
-        {
+            //returner = 1;
+        //} else if (sensors.LeftColorSensor.red() < sensors.RightColorSensor.red() && sensors.LeftColorSensor.blue() > sensors.RightColorSensor.blue())
+        //{
             //Left Ball is blue
             //Right ball is red
-            returner = -1;
-        } else
+           // returner = -1;
+        //} else
         {
             //Failed to detect
-            returner = 0;
+           // returner = 0;
         }
 
         sensors.LeftColorSensor.enableLed(false);
-        sensors.RightColorSensor.enableLed(false);
+       // sensors.RightColorSensor.enableLed(false);
         return returner;
     }
 
         public int LeftBallColorDetectOneSensor ()
         {
             sensors.LeftColorSensor.enableLed(true);
-            sensors.RightColorSensor.enableLed(true);
+            //sensors.RightColorSensor.enableLed(true);
             sleep(1000);
 
             int returner;
@@ -366,7 +366,7 @@ abstract public class FTC201718_Automation extends LinearOpMode
 
 
             sensors.LeftColorSensor.enableLed(false);
-            sensors.RightColorSensor.enableLed(false);
+            //sensors.RightColorSensor.enableLed(false);
             sleep(1000);
             return returner;
         }

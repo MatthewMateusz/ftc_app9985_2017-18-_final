@@ -29,7 +29,7 @@ public class FTC201718_Sensors_Setups
 
     //Color Sensor
     public ColorSensor LeftColorSensor  = null;
-    public ColorSensor RightColorSensor = null;
+   // public ColorSensor RightColorSensor = null;
 
     //MRGyro sensor, NOTE: will be set back to NULL if problems with initalization or calibration
       //public ModernRoboticsI2cGyro gyroSensor = null;
@@ -65,10 +65,10 @@ public class FTC201718_Sensors_Setups
           //*Program name*.enabledLed(false); //Change false to true to enable LED
 
         LeftColorSensor  = hwMap.colorSensor.get("left_colorSensor");
-        RightColorSensor = hwMap.colorSensor.get("right_colorSensor");
+        //RightColorSensor = hwMap.colorSensor.get("right_colorSensor");
 
         LeftColorSensor.enableLed(false);
-        RightColorSensor.enableLed(false);
+        //RightColorSensor.enableLed(false);
 
         //Define MRGyro
           //
