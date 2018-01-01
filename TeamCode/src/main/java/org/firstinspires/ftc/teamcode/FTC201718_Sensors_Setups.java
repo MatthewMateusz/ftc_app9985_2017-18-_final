@@ -13,8 +13,7 @@ import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 
 public class FTC201718_Sensors_Setups
 {
-    public static final double TailUp   = -0.1;
-    public static final double TailDown = 0.7;
+
 
     //Public sensor members
 

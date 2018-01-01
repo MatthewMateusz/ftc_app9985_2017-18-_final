@@ -363,11 +363,11 @@ abstract public class FTC201718_Automation extends LinearOpMode
                 //Failed to detect
                 for (int i = 0; i <= 5 ; i++)
                 {
-                    sleep(1000);
                     double offSet = 0.025;
                     double currentPosition;
                     currentPosition = actuators.SwingArm.getPosition();
-                    actuators.SwingArm.setPosition(currentPosition + offSet);
+                    actuators.SwingArm.setPosition(currentPosition - offSet);
+                    sleep(1000);
 
                     if (sensors.LeftColorSensor.red() > sensors.LeftColorSensor.blue())
                     {
@@ -393,6 +393,7 @@ abstract public class FTC201718_Automation extends LinearOpMode
 
             sensors.LeftColorSensor.enableLed(false);
             //sensors.RightColorSensor.enableLed(false);
+            actuators.SwingArm.setPosition(0.5);
             sleep(1000);
             return returner;
         }
@@ -406,22 +407,22 @@ abstract public class FTC201718_Automation extends LinearOpMode
 
         public void open ()
         {
-            actuators.LeftGlyphHolder.setPosition(0.325);
-            actuators.RightGlyphHolder.setPosition(0.65);
+            actuators.LeftGlyphHolder.setPosition(actuators.BlockGabberLeft_OPEN);
+            actuators.RightGlyphHolder.setPosition(actuators.BlockGabberRight_OPEN);
             waitForAction();
         }
 
         public void release ()
         {
-            actuators.LeftGlyphHolder.setPosition(0.898);
-            actuators.RightGlyphHolder.setPosition(0.113);
+            actuators.LeftGlyphHolder.setPosition(actuators.BlockGabberLeft_RELEASE);
+            actuators.RightGlyphHolder.setPosition(actuators.BlockGabberRight_RELEASE);
             waitForAction();
         }
 
         public void close ()
         {
-            actuators.LeftGlyphHolder.setPosition(1);
-            actuators.RightGlyphHolder.setPosition(0);
+            actuators.LeftGlyphHolder.setPosition(actuators.BlockGabberLeft_CLOSE);
+            actuators.RightGlyphHolder.setPosition(actuators.BlockGabberRight_CLOSE);
             waitForAction();
         }
     }
@@ -470,13 +471,15 @@ abstract public class FTC201718_Automation extends LinearOpMode
 
         public void down ()
         {
-            actuators.ServoArm.setPosition(sensors.TailDown);
+            actuators.ServoArm.setPosition(actuators.TailDown - 0.1);
+            waitForAction();
+            actuators.ServoArm.setPosition(actuators.TailDown);
             waitForAction();
         }
 
         public void up  ()
         {
-            actuators.ServoArm.setPosition(sensors.TailUp);
+            actuators.ServoArm.setPosition(actuators.TailUp);
             waitForAction();
         }
     }

@@ -96,11 +96,11 @@ public class FTC201718_AutoBlueRight extends FTC201718_Automation
         }
         encoderDriveAside(SPEED_SLOW , 4 , TOUT_LONG);
         encoderDriveDistance(SPEED_NORMAL , 12 , TOUT_MEDIUM);
-        encoderDriveDistance(SPEED_NORMAL , 17 + OffSet, TOUT_MEDIUM);
+        encoderDriveDistance(SPEED_NORMAL , 18.25 + OffSet, TOUT_MEDIUM);
         encoderTurnInPlace(SPEED_TURN_TILE , -90 , TOUT_LONG);
         encoderDriveDistance(SPEED_SLOW ,12 , TOUT_LONG);
         BlockGrabber.release();
-        encoderDriveDistance(SPEED_SLOW , -4 , TOUT_MEDIUM);
+        encoderDriveDistance(SPEED_SLOW , -5 , TOUT_MEDIUM);
     }
 
 

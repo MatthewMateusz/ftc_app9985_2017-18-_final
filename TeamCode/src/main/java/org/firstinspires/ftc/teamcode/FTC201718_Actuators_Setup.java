@@ -34,6 +34,17 @@ public class FTC201718_Actuators_Setup
     public Servo LeftGlyphHolder  = null;
     public Servo RightGlyphHolder = null;
 
+
+    public static final double TailUp   = -0.1;
+    public static final double TailDown = 0.9;
+
+    public static final double BlockGabberLeft_OPEN = 0.325;
+    public static final double BlockGabberRight_OPEN = 0.65;
+    public static final double BlockGabberLeft_RELEASE = 0.898;
+    public static final double BlockGabberRight_RELEASE = 0.113;
+    public static final double BlockGabberLeft_CLOSE = 1;
+    public static final double BlockGabberRight_CLOSE  = 0;
+
     //Servo starting positions
     double ServoArmPostition = 0.5; // 0 - 1 where 0 is 0 degrees and 1 is 180 degrees
 
@@ -101,9 +112,9 @@ public class FTC201718_Actuators_Setup
         SwingArm         = hwMap.servo.get("servo_swing");
 
         //Set Servo Positions
-        ServoArm.setPosition(0.0);
-        LeftGlyphHolder.setPosition(0);
-        RightGlyphHolder.setPosition(0.95);
+        ServoArm.setPosition(TailUp);
+        LeftGlyphHolder.setPosition(BlockGabberLeft_OPEN);
+        RightGlyphHolder.setPosition(BlockGabberRight_OPEN);
         SwingArm.setPosition(0.5);
     }
 }
