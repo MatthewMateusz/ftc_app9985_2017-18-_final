@@ -27,6 +27,8 @@ public class FTC201718_AutoRedRight extends FTC201718_Automation
     public ServoArm ServoArm = new ServoArm();
     public BlockGrabber BlockGrabber = new BlockGrabber();
     public Swing Swing = new Swing();
+    public int CurrSide = 1;
+    public int OpNumber = 11;
 
     @Override
     public void runOpMode() throws InterruptedException
@@ -95,29 +97,17 @@ public class FTC201718_AutoRedRight extends FTC201718_Automation
         {
             OffSet = 0;
         }
+        else
+        {
+
+        }
 
         // Move ServoArm down and detect color and based on the color rotate
         BlockGrabber.close();
         LiftArmSecond(750);
         ServoArm.down();
-        LeftBallColor = LeftBallColorDetectOneSensor();
-        if (LeftBallColor == -1) //Left ball is red
-        {
-            Swing.left();
-            Swing.center();
-            ServoArm.up();
-        }
-        else if (LeftBallColor == 1) //Left ball is blue
-        {
-            Swing.right();
-            Swing.center();
-            ServoArm.up();
-        }
-        else
-        {
-            telemetry.addData("AUTO: " , "Failed To Detect Color");
-            ServoArm.up();
-        }
+        ColorDetectMove(CurrSide);
+
 
         encoderDriveAside(SPEED_SLOW , 4 , TOUT_LONG);
         encoderDriveDistance(SPEED_NORMAL , -12 , TOUT_MEDIUM);

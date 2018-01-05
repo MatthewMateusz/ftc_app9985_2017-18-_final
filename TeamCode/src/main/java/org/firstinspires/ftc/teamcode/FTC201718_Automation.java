@@ -28,8 +28,8 @@ abstract public class FTC201718_Automation extends LinearOpMode
 
     //Drive Constants
     public static final double SPEED_FULL   = 1;
-    public static final double SPEED_NORMAL = 0.3;
-    public static final double SPEED_SLOW   = 0.1;
+    public static final double SPEED_NORMAL = 0.6;
+    public static final double SPEED_SLOW   = 0.3;
 
     //Turn Constants
     public static final double SPEED_TURN_PLAT = 0.1;
@@ -45,9 +45,11 @@ abstract public class FTC201718_Automation extends LinearOpMode
 
     //Variables to be used for later
     public VuforiaLocalizer vuforiaLocalizer;
-    public VuforiaLocalizer.Parameters parameters;
+    VuforiaLocalizer vuforia  = null;
+    public VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
     public VuforiaTrackable target;
     public VuforiaTrackableDefaultListener listener;
+    VuforiaTrackable relicTemplate = null;
 
     public OpenGLMatrix lastKnownLocation;
     public OpenGLMatrix phoneLocation;
@@ -61,6 +63,10 @@ abstract public class FTC201718_Automation extends LinearOpMode
     //Declare OpMode data
     FTC201718_Actuators_Setup actuators = new FTC201718_Actuators_Setup();
     FTC201718_Sensors_Setups sensors = new FTC201718_Sensors_Setups();
+
+    public ServoArm ServoArm = new ServoArm();
+    public BlockGrabber BlockGrabber = new BlockGrabber();
+    public Swing Swing = new Swing();
 
     //Timeout variable
     private ElapsedTime runtime = new ElapsedTime();
@@ -85,6 +91,11 @@ abstract public class FTC201718_Automation extends LinearOpMode
 
     public void encoderDrive4 ( double power, double FrontLeftEncoderTicks, double FrontRightEncoderTicks, double RearLeftEncoderTicks, double RearRightEncoderTicks, double timeoutS)
     {
+        actuators.FrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        actuators.FrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        actuators.RearLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        actuators.RearRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
         int newFrontLeftTarget;
         int newFrontRightTarget;
         int newRearLeftTarget;
@@ -435,13 +446,18 @@ abstract public class FTC201718_Automation extends LinearOpMode
         {
             sleep(1000);
         }
+        public void waitForActionFast ()
+        {
+            sleep(500);
+        }
 
         public void left() {
             actuators.SwingArm.setPosition(0);
             waitForAction();
         }
 
-        public void center() {
+        public void center()
+        {
             actuators.SwingArm.setPosition(0.5);
             waitForAction();
         }
@@ -483,6 +499,10 @@ abstract public class FTC201718_Automation extends LinearOpMode
             actuators.ServoArm.setPosition(actuators.TailUp);
             waitForAction();
         }
+        public void mid ()
+        {
+            actuators.ServoArm.setPosition(0.5);
+        }
     }
 
 
@@ -498,5 +518,53 @@ abstract public class FTC201718_Automation extends LinearOpMode
         sleep(1000);
     }
 
+    public void ColorDetectMove (int CurrSide) // 0 is for blue and 1 is for red
+    {
+        int BallColor = LeftBallColorDetectOneSensor();
 
+        if (CurrSide == 0)
+        {
+            if (BallColor == 1) //Left ball is red
+            {
+                Swing.left();
+                ServoArm.mid();
+                Swing.center();
+                ServoArm.up();
+            }
+            else if (BallColor == -1) //Left ball is blue
+            {
+                Swing.right();
+                ServoArm.mid();
+                Swing.center();
+                ServoArm.up();
+            }
+            else
+            {
+                telemetry.addData("AUTO: " , "Failed To Detect Color");
+                ServoArm.up();
+            }
+        }
+        else
+        {
+            if (BallColor == -1) //Left ball is red
+            {
+                Swing.left();
+                ServoArm.mid();
+                Swing.center();
+                ServoArm.up();
+            }
+            else if (BallColor == 1) //Left ball is blue
+            {
+                Swing.right();
+                ServoArm.mid();
+                Swing.center();
+                ServoArm.up();
+            }
+            else
+            {
+                telemetry.addData("AUTO: " , "Failed To Detect Color");
+                ServoArm.up();
+            }
+        }
+    }
 }

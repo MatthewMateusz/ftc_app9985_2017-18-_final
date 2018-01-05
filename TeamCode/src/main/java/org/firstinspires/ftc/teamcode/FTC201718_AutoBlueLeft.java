@@ -36,6 +36,8 @@ public class FTC201718_AutoBlueLeft extends FTC201718_Automation
     public ServoArm ServoArm = new ServoArm();
     public BlockGrabber BlockGrabber = new BlockGrabber();
     public Swing Swing = new Swing();
+    public int CurrSide = 0;
+    public int OpNumber = 0;
 
     @Override
     public void runOpMode() throws InterruptedException
@@ -96,39 +98,32 @@ public class FTC201718_AutoBlueLeft extends FTC201718_Automation
         RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
         if (vuMark == RelicRecoveryVuMark.LEFT)
         {
+            telemetry.addData("SAW:" , "%string" , "LEFT");
             OffSet = 0;
         }
         else if (vuMark == RelicRecoveryVuMark.CENTER)
         {
+            telemetry.addData("SAW:" , "%string" , "CENTER");
             OffSet = 0;
         }
         else if (vuMark == RelicRecoveryVuMark.RIGHT)
         {
+            telemetry.addData("SAW:" , "%string" , "RIGHT");
             OffSet = 0;
         }
+        else
+        {
+            telemetry.addData("SAW:" , "%string" , "FAILED");
+            OffSet = 0;
+        }
+        telemetry.update();
+        sleep(1000);
 
         // Move ServoArm down and detect color and based on the color rotate
         BlockGrabber.close();
         LiftArmSecond(750);
         ServoArm.down();
-        LeftBallColor = LeftBallColorDetectOneSensor();
-        if (LeftBallColor == 1) //Left ball is red
-        {
-            Swing.left();
-            Swing.center();
-            ServoArm.up();
-        }
-        else if (LeftBallColor == -1) //Left ball is blue
-        {
-            Swing.right();
-            Swing.center();
-            ServoArm.up();
-        }
-        else
-        {
-            telemetry.addData("AUTO: " , "Failed To Detect Color");
-            ServoArm.up();
-        }
+        ColorDetectMove(CurrSide);
 
         encoderDriveAside(SPEED_SLOW , 4 , TOUT_LONG);
         encoderDriveDistance(SPEED_NORMAL , 15 , TOUT_MEDIUM);

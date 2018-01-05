@@ -31,11 +31,13 @@ public class FTC201718_AutoBlueRight extends FTC201718_Automation
 
     public static final double ServoArm_Down = 0.7;
     public static final double ServoArm_Up   = 0;
-    public static final double BlockOffset = 4;
+    public static final double BlockOffset = 8;
 
     public ServoArm ServoArm = new ServoArm();
     public BlockGrabber BlockGrabber = new BlockGrabber();
     public Swing Swing = new Swing();
+    public int CurrSide = 0;
+    public int OpNumber = 1;
 
     @Override
     public void runOpMode() throws InterruptedException
@@ -48,7 +50,7 @@ public class FTC201718_AutoBlueRight extends FTC201718_Automation
         setupHardware();
 
         // Start Vuforia Setup A1 (this one is going to be a long one)
-        parameters.vuforiaLicenseKey = VUFORIA_KEY;
+        parameters.vuforiaLicenseKey = "AUYFfMb/////AAAAGeK9R/Mswk3ko4WgwY69fsB3D/KziaC/ZBui6bKvAUjjnhKoPyiDs0+TfVP3vMkYQ4Q0Amo4yosMAH9Xs0k+HX5MHGkhFbGLrDYj5zUN8NinByqcruRQZJuuISEHn1TfD5Fpa9psUmylGexAIwVB6WMfYTL2eKg4EE5mAaRsPgRKZnk/SjMzitYtthDxFusHftOK0N8vywIVSX79mBGmdy6+XUqLLa72zYXUvCrs9lov+xGuC06dUrmpFHl7uwt75QBVb5qyvbsruC4Bfnezzz1S747xiTHQz7Q86q1ZCix2V3AmxQxUuqhlYXDiC6uBseB3npuzuRtNxyCpn6+p3L1qv+Y1axec01BAOUATpSvy";
 
         parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
         this.vuforia = ClassFactory.createVuforiaLocalizer(parameters);
@@ -93,39 +95,32 @@ public class FTC201718_AutoBlueRight extends FTC201718_Automation
         if (vuMark == RelicRecoveryVuMark.LEFT)
         {
             OffSet = 0;
+            telemetry.addData("SAW:" , "%string" , "LEFT");
         }
         else if (vuMark == RelicRecoveryVuMark.CENTER)
         {
-            OffSet = 0;
+            OffSet = BlockOffset;
+            telemetry.addData("SAW:" , "%string" , "CENTER");
         }
         else if (vuMark == RelicRecoveryVuMark.RIGHT)
         {
+            OffSet = (BlockOffset * 2);
+            telemetry.addData("SAW:" , "%s visible" , "RIGHT");
+        }
+        else
+        {
             OffSet = 0;
         }
+
+        sleep(1000);
 
 
         // Move ServoArm down and detect color and based on the color rotate
         BlockGrabber.close();
         LiftArmSecond(750);
         ServoArm.down();
-        LeftBallColor = LeftBallColorDetectOneSensor();
-        if (LeftBallColor == 1) //Left ball is red
-        {
-            Swing.left();
-            Swing.center();
-            ServoArm.up();
-        }
-        else if (LeftBallColor == -1) //Left ball is blue
-        {
-            Swing.right();
-            Swing.center();
-            ServoArm.up();
-        }
-        else
-        {
-            telemetry.addData("AUTO: " , "Failed To Detect Color");
-            ServoArm.up();
-        }
+        ColorDetectMove(CurrSide);
+
         encoderDriveAside(SPEED_SLOW , 4 , TOUT_LONG);
         encoderDriveDistance(SPEED_NORMAL , 12 , TOUT_MEDIUM);
         encoderDriveDistance(SPEED_NORMAL , 18.25 + OffSet, TOUT_MEDIUM);

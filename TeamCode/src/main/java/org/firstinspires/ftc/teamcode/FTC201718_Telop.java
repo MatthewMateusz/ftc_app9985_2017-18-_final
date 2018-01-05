@@ -48,10 +48,10 @@ public class FTC201718_Telop extends OpMode
     public void start ()
     {
         //TEMP
-        actuators.FrontLeft.setDirection(DcMotor.Direction.FORWARD);
-        actuators.FrontRight.setDirection(DcMotor.Direction.FORWARD);
-        actuators.RearLeft.setDirection(DcMotor.Direction.REVERSE);
-        actuators.RearRight.setDirection(DcMotor.Direction.REVERSE);
+        actuators.FrontLeft.setDirection(DcMotor.Direction.REVERSE);
+        actuators.FrontRight.setDirection(DcMotor.Direction.REVERSE);
+        actuators.RearLeft.setDirection(DcMotor.Direction.FORWARD);
+        actuators.RearRight.setDirection(DcMotor.Direction.FORWARD);
         //END TEMP
         telemetry.addData("Say" , "I bet you will win");
         telemetry.update();

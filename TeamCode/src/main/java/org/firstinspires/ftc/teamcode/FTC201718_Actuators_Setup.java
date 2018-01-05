@@ -23,10 +23,10 @@ public class FTC201718_Actuators_Setup
     public DcMotor RearRight  = null;
     public DcMotor YFrontArm  = null;
 
-    public static final double COUNTS_PER_INCHES    = 90.0;         // to be calibrated empircally
+    public static final double COUNTS_PER_INCHES        = 90.0;         // to be calibrated empircally
     public static final double COUNTS_PER_ANGLE_NEG     = 1751.0/90.0;  // to be calibrated empircally
     public static final double COUNTS_PER_ANGLE_POS     = 1703.0/90.0;  // to be calibrated empircally
-    public static final double COUNTS_PER_ASIDE     = 120.0;        // to be calibrated empircally
+    public static final double COUNTS_PER_ASIDE         = 120.0;        // to be calibrated empircally
 
     //Declares servos on robot
     public Servo ServoArm         = null;
@@ -36,14 +36,14 @@ public class FTC201718_Actuators_Setup
 
 
     public static final double TailUp   = -0.1;
-    public static final double TailDown = 0.9;
+    public static final double TailDown = 0.75;
 
-    public static final double BlockGabberLeft_OPEN = 0.325;
-    public static final double BlockGabberRight_OPEN = 0.65;
-    public static final double BlockGabberLeft_RELEASE = 0.898;
+    public static final double BlockGabberLeft_OPEN     = 0.325;
+    public static final double BlockGabberRight_OPEN    = 0.65;
+    public static final double BlockGabberLeft_RELEASE  = 0.898;
     public static final double BlockGabberRight_RELEASE = 0.113;
-    public static final double BlockGabberLeft_CLOSE = 1;
-    public static final double BlockGabberRight_CLOSE  = 0;
+    public static final double BlockGabberLeft_CLOSE    = 1;
+    public static final double BlockGabberRight_CLOSE   = 0;
 
     //Servo starting positions
     double ServoArmPostition = 0.5; // 0 - 1 where 0 is 0 degrees and 1 is 180 degrees
@@ -77,10 +77,10 @@ public class FTC201718_Actuators_Setup
         YFrontArm  = hwMap.dcMotor.get("Y_Arm");
 
         //Autonomous
-        FrontLeft.setDirection(DcMotor.Direction.FORWARD);
-        FrontRight.setDirection(DcMotor.Direction.REVERSE);
-        RearLeft.setDirection(DcMotor.Direction.FORWARD);
-        RearRight.setDirection(DcMotor.Direction.REVERSE);
+        FrontLeft.setDirection(DcMotor.Direction.REVERSE);
+        FrontRight.setDirection(DcMotor.Direction.FORWARD);
+        RearLeft.setDirection(DcMotor.Direction.REVERSE);
+        RearRight.setDirection(DcMotor.Direction.FORWARD);
 
 
         //Set all motors to zero power
