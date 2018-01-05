@@ -3,6 +3,13 @@ package org.firstinspires.ftc.teamcode;
 import com.google.blocks.ftcrobotcontroller.runtime.Block;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
+import org.firstinspires.ftc.robotcore.external.ClassFactory;
+import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
+import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
+
 /**
  * Created by Matthew on 9/27/2017.
  */
@@ -10,6 +17,10 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 @Autonomous (name = "RedAuto Right Platform")
 public class FTC201718_AutoRedRight extends FTC201718_Automation
 {
+    OpenGLMatrix lastLocation = null;
+    VuforiaLocalizer vuforia  = null;
+    VuforiaTrackable relicTemplate = null;
+
     public static final double ServoArm_Down = 0.7;
     public static final double ServoArm_Up   = 0;
 
@@ -27,6 +38,17 @@ public class FTC201718_AutoRedRight extends FTC201718_Automation
         telemetry.update();
         setupHardware();
 
+        // Start Vuforia Setup A1 (this one is going to be a long one)
+        parameters.vuforiaLicenseKey = VUFORIA_KEY;
+
+        parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
+        this.vuforia = ClassFactory.createVuforiaLocalizer(parameters);
+
+        VuforiaTrackables relicTrackables = this.vuforia.loadTrackablesFromAsset("RelicVuMark");
+        relicTemplate = relicTrackables.get(0);
+        relicTemplate.setName("relicVuMarkTemplate"); // can help in debugging; otherwise not necessary
+        // End of Vuforia Setup A1
+
         //Add processes for Init
         //setupVuforia("RelicVuMark" , "RelicRecovery");
 
@@ -41,6 +63,7 @@ public class FTC201718_AutoRedRight extends FTC201718_Automation
         telemetry.addData("Status" , "Started");
         telemetry.update();
 
+        relicTrackables.activate();
         //visionTargets.activate();
 
         //Add autonomous code here
@@ -57,6 +80,21 @@ public class FTC201718_AutoRedRight extends FTC201718_Automation
         int LeftBallColor;
         OffSet = 0;
         LeftBallColor = 0;
+
+        //Detect the 'images' on the side
+        RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
+        if (vuMark == RelicRecoveryVuMark.LEFT)
+        {
+            OffSet = 0;
+        }
+        else if (vuMark == RelicRecoveryVuMark.CENTER)
+        {
+            OffSet = 0;
+        }
+        else if (vuMark == RelicRecoveryVuMark.RIGHT)
+        {
+            OffSet = 0;
+        }
 
         // Move ServoArm down and detect color and based on the color rotate
         BlockGrabber.close();

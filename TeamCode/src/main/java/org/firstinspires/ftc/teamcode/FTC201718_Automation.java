@@ -46,14 +46,13 @@ abstract public class FTC201718_Automation extends LinearOpMode
     //Variables to be used for later
     public VuforiaLocalizer vuforiaLocalizer;
     public VuforiaLocalizer.Parameters parameters;
-    public VuforiaTrackables visionTargets;
     public VuforiaTrackable target;
     public VuforiaTrackableDefaultListener listener;
 
     public OpenGLMatrix lastKnownLocation;
     public OpenGLMatrix phoneLocation;
 
-    private static final String VUFORIA_KEY = "AUYFfMb/////AAAAGeK9R/Mswk3ko4WgwY69fsB3D/KziaC/ZBui6bKvAUjjnhKoPyiDs0+TfVP3vMkYQ4Q0Amo4yosMAH9Xs0k+HX5MHGkhFbGLrDYj5zUN8NinByqcruRQZJuuISEHn1TfD5Fpa9psUmylGexAIwVB6WMfYTL2eKg4EE5mAaRsPgRKZnk/SjMzitYtthDxFusHftOK0N8vywIVSX79mBGmdy6+XUqLLa72zYXUvCrs9lov+xGuC06dUrmpFHl7uwt75QBVb5qyvbsruC4Bfnezzz1S747xiTHQz7Q86q1ZCix2V3AmxQxUuqhlYXDiC6uBseB3npuzuRtNxyCpn6+p3L1qv+Y1axec01BAOUATpSvy";
+    public static final String VUFORIA_KEY = "AUYFfMb/////AAAAGeK9R/Mswk3ko4WgwY69fsB3D/KziaC/ZBui6bKvAUjjnhKoPyiDs0+TfVP3vMkYQ4Q0Amo4yosMAH9Xs0k+HX5MHGkhFbGLrDYj5zUN8NinByqcruRQZJuuISEHn1TfD5Fpa9psUmylGexAIwVB6WMfYTL2eKg4EE5mAaRsPgRKZnk/SjMzitYtthDxFusHftOK0N8vywIVSX79mBGmdy6+XUqLLa72zYXUvCrs9lov+xGuC06dUrmpFHl7uwt75QBVb5qyvbsruC4Bfnezzz1S747xiTHQz7Q86q1ZCix2V3AmxQxUuqhlYXDiC6uBseB3npuzuRtNxyCpn6+p3L1qv+Y1axec01BAOUATpSvy";
 
     private float robotX = 0;
     private float robotY = 0;
@@ -261,6 +260,7 @@ abstract public class FTC201718_Automation extends LinearOpMode
         actuators.RearRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         actuators.YFrontArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
+    /*
     public void setupVuforia(String AssetName , String TargetName)
     {
         //Seup parameters to create localizer
@@ -287,6 +287,7 @@ abstract public class FTC201718_Automation extends LinearOpMode
         listener = (VuforiaTrackableDefaultListener) target.getListener();
         listener.setPhoneInformation(phoneLocation , parameters.cameraDirection);
     }
+    */
 
     //Creates a matrix for determining the locations and orientations of objects
     //Units are millimeters for x, y, and z, and degrees for u, v, and w
