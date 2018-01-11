@@ -113,8 +113,8 @@ public class FTC201718_Actuators_Setup
 
         //Set Servo Positions
         ServoArm.setPosition(TailUp);
-        LeftGlyphHolder.setPosition(BlockGabberLeft_OPEN);
-        RightGlyphHolder.setPosition(BlockGabberRight_OPEN);
+        LeftGlyphHolder.setPosition(0);
+        RightGlyphHolder.setPosition(0.95);
         SwingArm.setPosition(0.5);
     }
 }

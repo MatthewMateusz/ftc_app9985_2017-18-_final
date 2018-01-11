@@ -28,8 +28,8 @@ abstract public class FTC201718_Automation extends LinearOpMode
 
     //Drive Constants
     public static final double SPEED_FULL   = 1;
-    public static final double SPEED_NORMAL = 0.6;
-    public static final double SPEED_SLOW   = 0.3;
+    public static final double SPEED_NORMAL = 0.3;
+    public static final double SPEED_SLOW   = 0.1;
 
     //Turn Constants
     public static final double SPEED_TURN_PLAT = 0.1;
@@ -137,6 +137,11 @@ abstract public class FTC201718_Automation extends LinearOpMode
                     (actuators.FrontLeft.isBusy() && actuators.FrontRight.isBusy() && actuators.RearLeft.isBusy() && actuators.RearRight.isBusy()) // && -> || --correction for the case of turn and drag
                     )
             {
+                actuators.FrontLeft.setPower(power);
+                actuators.FrontRight.setPower(power);
+                actuators.RearLeft.setPower(power);
+                actuators.RearRight.setPower(power);
+
                 // Display it for the driver.
                 telemetry.addData("Status", "encoderDrive4");
                 telemetry.addData("Path1", "Running to %7d :%7d :%7d :%7d", newFrontLeftTarget , newFrontRightTarget , newRearLeftTarget , newRearRightTarget);
@@ -412,6 +417,8 @@ abstract public class FTC201718_Automation extends LinearOpMode
 
     public class BlockGrabber
     {
+
+
         public void waitForAction ()
         {
             sleep(1000);
@@ -430,6 +437,7 @@ abstract public class FTC201718_Automation extends LinearOpMode
             actuators.RightGlyphHolder.setPosition(actuators.BlockGabberRight_RELEASE);
             waitForAction();
         }
+
 
         public void close ()
         {

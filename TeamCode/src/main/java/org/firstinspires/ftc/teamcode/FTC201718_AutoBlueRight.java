@@ -33,9 +33,6 @@ public class FTC201718_AutoBlueRight extends FTC201718_Automation
     public static final double ServoArm_Up   = 0;
     public static final double BlockOffset = 8;
 
-    public ServoArm ServoArm = new ServoArm();
-    public BlockGrabber BlockGrabber = new BlockGrabber();
-    public Swing Swing = new Swing();
     public int CurrSide = 0;
     public int OpNumber = 1;
 
@@ -110,6 +107,7 @@ public class FTC201718_AutoBlueRight extends FTC201718_Automation
         else
         {
             OffSet = 0;
+
         }
 
         sleep(1000);
@@ -121,13 +119,12 @@ public class FTC201718_AutoBlueRight extends FTC201718_Automation
         ServoArm.down();
         ColorDetectMove(CurrSide);
 
-        encoderDriveAside(SPEED_SLOW , 4 , TOUT_LONG);
-        encoderDriveDistance(SPEED_NORMAL , 12 , TOUT_MEDIUM);
-        encoderDriveDistance(SPEED_NORMAL , 18.25 + OffSet, TOUT_MEDIUM);
-        encoderTurnInPlace(SPEED_TURN_TILE , -90 , TOUT_LONG);
+        encoderDriveDistance(SPEED_NORMAL , 28.25 + OffSet, TOUT_MEDIUM);
+        encoderTurnInPlace(SPEED_TURN_TILE , -93 , TOUT_LONG);
         encoderDriveDistance(SPEED_SLOW ,12 , TOUT_LONG);
         BlockGrabber.release();
         encoderDriveDistance(SPEED_SLOW , -5 , TOUT_MEDIUM);
+        BlockGrabber.open();
     }
 
 

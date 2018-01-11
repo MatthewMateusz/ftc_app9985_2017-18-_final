@@ -33,9 +33,6 @@ public class FTC201718_AutoBlueLeft extends FTC201718_Automation
     public static final double ServoArm_Down = 0.7;
     public static final double ServoArm_Up   = 0;
 
-    public ServoArm ServoArm = new ServoArm();
-    public BlockGrabber BlockGrabber = new BlockGrabber();
-    public Swing Swing = new Swing();
     public int CurrSide = 0;
     public int OpNumber = 0;
 
@@ -125,13 +122,12 @@ public class FTC201718_AutoBlueLeft extends FTC201718_Automation
         ServoArm.down();
         ColorDetectMove(CurrSide);
 
-        encoderDriveAside(SPEED_SLOW , 4 , TOUT_LONG);
-        encoderDriveDistance(SPEED_NORMAL , 15 , TOUT_MEDIUM);
-        encoderDriveDistance(SPEED_NORMAL , 8 , TOUT_MEDIUM);
-        encoderDriveAside(SPEED_SLOW , -2 + OffSet, TOUT_LONG);
+        encoderDriveDistance(SPEED_NORMAL , 25 , TOUT_MEDIUM);
+        encoderDriveAside(SPEED_SLOW , 2 + OffSet, TOUT_LONG);
         encoderDriveDistance(SPEED_SLOW , 11 , TOUT_LONG);
         BlockGrabber.release();
         encoderDriveDistance(SPEED_NORMAL , -5 , TOUT_MEDIUM);
+        BlockGrabber.open();
     }
 
 
