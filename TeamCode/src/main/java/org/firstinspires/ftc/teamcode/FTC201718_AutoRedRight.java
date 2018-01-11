@@ -18,7 +18,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 public class FTC201718_AutoRedRight extends FTC201718_Automation
 {
     OpenGLMatrix lastLocation = null;
-    VuforiaLocalizer vuforia  = null;
+    VuforiaLocalizer vuforia;
     VuforiaTrackable relicTemplate = null;
 
     public static final double ServoArm_Down = 0.7;
@@ -26,6 +26,7 @@ public class FTC201718_AutoRedRight extends FTC201718_Automation
 
     public int CurrSide = 1;
     public int OpNumber = 11;
+    public int BlockOffset = 8;
 
     @Override
     public void runOpMode() throws InterruptedException
@@ -63,6 +64,7 @@ public class FTC201718_AutoRedRight extends FTC201718_Automation
         telemetry.update();
 
         relicTrackables.activate();
+        sleep(1000);
         //visionTargets.activate();
 
         //Add autonomous code here
@@ -82,32 +84,37 @@ public class FTC201718_AutoRedRight extends FTC201718_Automation
 
         //Detect the 'images' on the side
         RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
+
         if (vuMark == RelicRecoveryVuMark.LEFT)
         {
             OffSet = 0;
+            telemetry.addData("SAW:" , "%s visible" , "LEFT");
         }
         else if (vuMark == RelicRecoveryVuMark.CENTER)
         {
-            OffSet = 0;
+            OffSet =BlockOffset * 2;
+            telemetry.addData("SAW:" , "%s visible" , "CENTER");
         }
         else if (vuMark == RelicRecoveryVuMark.RIGHT)
         {
             OffSet = 0;
+            telemetry.addData("SAW:" , "%s visible" , "RIGHT");
         }
         else
         {
-
+            telemetry.addData("SAW:" , "%s visible" , "FAILED");
         }
+        telemetry.update();
 
         // Move ServoArm down and detect color and based on the color rotate
         BlockGrabber.close();
-        LiftArmSecond(750);
+        //LiftArmSecond(750);
         ServoArm.down();
         ColorDetectMove(CurrSide);
 
 
-        encoderDriveDistance(SPEED_NORMAL , -22 + OffSet, TOUT_MEDIUM);
-        encoderDriveAside(SPEED_NORMAL , 6 + OffSet , TOUT_LONG); // OffSet needs to be negative
+        encoderDriveDistance(SPEED_NORMAL , -22, TOUT_MEDIUM);
+        encoderDriveAside(SPEED_SLOW , 6 + OffSet , TOUT_LONG); // OffSet needs to be negative
         encoderTurnInPlace(SPEED_TURN_TILE , 180 , TOUT_LONG);
         encoderDriveDistance(SPEED_NORMAL , 9 , TOUT_LONG);
         BlockGrabber.release();

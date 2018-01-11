@@ -45,7 +45,7 @@ abstract public class FTC201718_Automation extends LinearOpMode
 
     //Variables to be used for later
     public VuforiaLocalizer vuforiaLocalizer;
-    VuforiaLocalizer vuforia  = null;
+    VuforiaLocalizer vuforia;
     public VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
     public VuforiaTrackable target;
     public VuforiaTrackableDefaultListener listener;
@@ -378,7 +378,7 @@ abstract public class FTC201718_Automation extends LinearOpMode
             else
             {
                 //Failed to detect
-                for (int i = 0; i <= 5 ; i++)
+                for (int i = 1; i <= 4 ; i++)
                 {
                     double offSet = 0.025;
                     double currentPosition;
