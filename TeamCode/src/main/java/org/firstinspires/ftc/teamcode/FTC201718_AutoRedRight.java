@@ -108,13 +108,13 @@ public class FTC201718_AutoRedRight extends FTC201718_Automation
 
         // Move ServoArm down and detect color and based on the color rotate
         BlockGrabber.close();
-        //LiftArmSecond(750);
+        LiftArmSecond(750);
         ServoArm.down();
         ColorDetectMove(CurrSide);
 
 
         encoderDriveDistance(SPEED_NORMAL , -22, TOUT_MEDIUM);
-        encoderDriveAside(SPEED_SLOW , 6 + OffSet , TOUT_LONG); // OffSet needs to be negative
+        encoderDriveAside(SPEED_SLOW , 6 + OffSet , TOUT_LONG);
         encoderTurnInPlace(SPEED_TURN_TILE , 180 , TOUT_LONG);
         encoderDriveDistance(SPEED_NORMAL , 9 , TOUT_LONG);
         BlockGrabber.release();
