@@ -37,10 +37,10 @@ public class FTC201718_Actuators_Setup
     public static final double TailUp   = -0.1;
     public static final double TailDown = 0.75;
 
-    public static final double BlockGabberLeft_OPEN      = 0.3;
-    public static final double BlockGabberRight_OPEN     = 0.9;
-    public static final double BlockGabberLeft_RELEASE   = 0.898;
-    public static final double BlockGabberRight_RELEASE  = 0.113;
+    public static final double BlockGabberLeft_OPEN      = 0;
+    public static final double BlockGabberRight_OPEN     = 1;
+    public static final double BlockGabberLeft_RELEASE   = 0.848;
+    public static final double BlockGabberRight_RELEASE  = 0.163;
     public static final double BlockGabberLeft_CLOSE     = 1;
     public static final double BlockGabberRight_CLOSE    = 0;
     public static final double BlockGabberLeft_PARRALLEL = 1; //Not Set
@@ -114,8 +114,8 @@ public class FTC201718_Actuators_Setup
 
         //Set Servo Positions
         ServoArm.setPosition(TailUp);
-        LeftGlyphHolder.setPosition(0);
-        RightGlyphHolder.setPosition(0.95);
+        LeftGlyphHolder.setPosition(BlockGabberLeft_OPEN);
+        RightGlyphHolder.setPosition(BlockGabberRight_OPEN);
         SwingArm.setPosition(0.5);
     }
 }
