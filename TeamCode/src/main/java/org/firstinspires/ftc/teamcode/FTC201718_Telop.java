@@ -215,7 +215,9 @@ public class FTC201718_Telop extends OpMode
 
         actuators.YFrontArm.setPower(GP2_RightStickY);
 
-
+        telemetry.addData("TopLimit" , "%b" , sensors.limitArmUp.isPressed());
+        telemetry.addData("BottomLimit" , "%b" , sensors.limitArmDown.isPressed());
+        telemetry.update();
 
     }
 

@@ -79,7 +79,6 @@ public class FTC201718_AutoRedRight extends FTC201718_Automation
     {
         double OffSet;
         int LeftBallColor;
-        OffSet = 0;
         LeftBallColor = 0;
 
         //Detect the 'images' on the side
@@ -92,7 +91,7 @@ public class FTC201718_AutoRedRight extends FTC201718_Automation
         }
         else if (vuMark == RelicRecoveryVuMark.CENTER)
         {
-            OffSet =BlockOffset * 2;
+            OffSet = 7.5;
             telemetry.addData("SAW:" , "%s visible" , "CENTER");
         }
         else if (vuMark == RelicRecoveryVuMark.RIGHT)
@@ -102,6 +101,7 @@ public class FTC201718_AutoRedRight extends FTC201718_Automation
         }
         else
         {
+            OffSet = 0;
             telemetry.addData("SAW:" , "%s visible" , "FAILED");
         }
         telemetry.update();
@@ -114,8 +114,10 @@ public class FTC201718_AutoRedRight extends FTC201718_Automation
 
 
         encoderDriveDistance(SPEED_NORMAL , -22, TOUT_MEDIUM);
-        encoderDriveAside(SPEED_SLOW , 6 + OffSet , TOUT_LONG);
-        encoderTurnInPlace(SPEED_TURN_TILE , 180 , TOUT_LONG);
+        encoderTurnInPlace(SPEED_TURN_TILE , 90 , TOUT_LONG);
+        encoderDriveDistance(SPEED_NORMAL , (6.5 + OffSet) , TOUT_MEDIUM);
+
+        encoderTurnInPlace(SPEED_TURN_TILE , 90 , TOUT_LONG);
         encoderDriveDistance(SPEED_NORMAL , 9 , TOUT_LONG);
         BlockGrabber.release();
         encoderDriveDistance(SPEED_NORMAL , -5 , TOUT_MEDIUM);

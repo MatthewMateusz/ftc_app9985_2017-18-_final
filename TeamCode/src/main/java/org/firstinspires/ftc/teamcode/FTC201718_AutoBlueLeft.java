@@ -123,7 +123,9 @@ public class FTC201718_AutoBlueLeft extends FTC201718_Automation
         ColorDetectMove(CurrSide);
 
         encoderDriveDistance(SPEED_NORMAL , 25 , TOUT_MEDIUM);
-        encoderDriveAside(SPEED_SLOW , 2 + OffSet, TOUT_LONG);
+        encoderTurnInPlace(SPEED_TURN_TILE , 90 , TOUT_MEDIUM);
+        encoderDriveDistance(SPEED_NORMAL , 2 + OffSet , TOUT_MEDIUM);
+        encoderTurnInPlace(SPEED_NORMAL , 90 , TOUT_MEDIUM);
         encoderDriveDistance(SPEED_SLOW , 11 , TOUT_LONG);
         BlockGrabber.release();
         encoderDriveDistance(SPEED_NORMAL , -5 , TOUT_MEDIUM);

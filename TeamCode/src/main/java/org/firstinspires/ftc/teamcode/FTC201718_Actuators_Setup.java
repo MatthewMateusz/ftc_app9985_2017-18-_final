@@ -39,8 +39,8 @@ public class FTC201718_Actuators_Setup
 
     public static final double BlockGabberLeft_OPEN      = 0;
     public static final double BlockGabberRight_OPEN     = 1;
-    public static final double BlockGabberLeft_RELEASE   = 0.848;
-    public static final double BlockGabberRight_RELEASE  = 0.163;
+    public static final double BlockGabberLeft_RELEASE   = 0.7;
+    public static final double BlockGabberRight_RELEASE  = 0.25;
     public static final double BlockGabberLeft_CLOSE     = 1;
     public static final double BlockGabberRight_CLOSE    = 0;
     public static final double BlockGabberLeft_PARRALLEL = 1; //Not Set
