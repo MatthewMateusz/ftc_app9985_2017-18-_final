@@ -124,7 +124,25 @@ public class FTC201718_AutoBlueLeft extends FTC201718_Automation
 
         encoderDriveDistance(SPEED_NORMAL , 25 , TOUT_MEDIUM);
         encoderTurnInPlace(SPEED_TURN_TILE , 90 , TOUT_MEDIUM);
-        encoderDriveDistance(SPEED_NORMAL , 2 + OffSet , TOUT_MEDIUM);
+        encoderDriveDistance(SPEED_NORMAL , 2, TOUT_MEDIUM);
+        if (vuMark == RelicRecoveryVuMark.LEFT)
+        {
+
+        }
+        else if (vuMark == RelicRecoveryVuMark.CENTER)
+        {
+
+        }
+        else if (vuMark == RelicRecoveryVuMark.RIGHT)
+        {
+
+        }
+        else
+        {
+
+        }
+
+
         encoderTurnInPlace(SPEED_NORMAL , 90 , TOUT_MEDIUM);
         encoderDriveDistance(SPEED_SLOW , 11 , TOUT_LONG);
         BlockGrabber.release();

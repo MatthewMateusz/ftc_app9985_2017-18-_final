@@ -91,7 +91,7 @@ public class FTC201718_AutoRedRight extends FTC201718_Automation
         }
         else if (vuMark == RelicRecoveryVuMark.CENTER)
         {
-            OffSet = 7.5;
+            OffSet = 7.45;
             telemetry.addData("SAW:" , "%s visible" , "CENTER");
         }
         else if (vuMark == RelicRecoveryVuMark.RIGHT)
@@ -113,9 +113,24 @@ public class FTC201718_AutoRedRight extends FTC201718_Automation
         ColorDetectMove(CurrSide);
 
 
-        encoderDriveDistance(SPEED_NORMAL , -22, TOUT_MEDIUM);
+        encoderDriveDistance(SPEED_NORMAL , -25, TOUT_MEDIUM);
         encoderTurnInPlace(SPEED_TURN_TILE , 90 , TOUT_LONG);
-        encoderDriveDistance(SPEED_NORMAL , (6.5 + OffSet) , TOUT_MEDIUM);
+        if (vuMark == RelicRecoveryVuMark.LEFT)
+        {
+            encoderDriveDistance(SPEED_NORMAL , 16.5 , TOUT_MEDIUM);
+        }
+        else if (vuMark == RelicRecoveryVuMark.CENTER)
+        {
+            encoderDriveDistance(SPEED_NORMAL , 10.5 , TOUT_MEDIUM);
+        }
+        else if (vuMark == RelicRecoveryVuMark.RIGHT)
+        {
+            encoderDriveDistance(SPEED_NORMAL , 6.5 , TOUT_MEDIUM);
+        }
+        else
+        {
+            encoderDriveDistance(SPEED_NORMAL , 6.5 , TOUT_MEDIUM);
+        }
 
         encoderTurnInPlace(SPEED_TURN_TILE , 90 , TOUT_LONG);
         encoderDriveDistance(SPEED_NORMAL , 9 , TOUT_LONG);

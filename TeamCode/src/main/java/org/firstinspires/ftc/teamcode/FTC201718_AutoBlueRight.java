@@ -119,7 +119,24 @@ public class FTC201718_AutoBlueRight extends FTC201718_Automation
         ServoArm.down();
         ColorDetectMove(CurrSide);
 
-        encoderDriveDistance(SPEED_NORMAL , 28.25 + OffSet, TOUT_MEDIUM);
+        encoderDriveDistance(SPEED_NORMAL , 28.25 , TOUT_MEDIUM);
+        if (vuMark == RelicRecoveryVuMark.LEFT)
+        {
+            encoderDriveDistance(SPEED_NORMAL , 0 , TOUT_MEDIUM);
+        }
+        else if (vuMark == RelicRecoveryVuMark.CENTER)
+        {
+            encoderDriveDistance(SPEED_NORMAL , 0 , TOUT_MEDIUM);
+        }
+        else if (vuMark == RelicRecoveryVuMark.RIGHT)
+        {
+            encoderDriveDistance(SPEED_NORMAL , 0 , TOUT_MEDIUM);
+        }
+        else
+        {
+            encoderDriveDistance(SPEED_NORMAL , 0 , TOUT_MEDIUM);
+        }
+
         encoderTurnInPlace(SPEED_TURN_TILE , -93 , TOUT_LONG);
         encoderDriveDistance(SPEED_SLOW ,12 , TOUT_LONG);
         BlockGrabber.release();

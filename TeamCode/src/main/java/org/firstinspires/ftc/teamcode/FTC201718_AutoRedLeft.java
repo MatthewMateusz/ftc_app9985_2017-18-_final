@@ -82,18 +82,21 @@ public class FTC201718_AutoRedLeft extends FTC201718_Automation
         if (vuMark == RelicRecoveryVuMark.LEFT)
         {
             OffSet = 0;
+            telemetry.addData("SAW:" , "%s visible" , "LEFT");
         }
         else if (vuMark == RelicRecoveryVuMark.CENTER)
         {
             OffSet = 0;
+            telemetry.addData("SAW:" , "%s visible" , "CENTER");
         }
         else if (vuMark == RelicRecoveryVuMark.RIGHT)
         {
             OffSet = 0;
+            telemetry.addData("SAW:" , "%s visible" , "RIGHT");
         }
         else
         {
-
+            telemetry.addData("SAW:" , "%s visible" , "UNKOWN");
         }
 
         // Move ServoArm down and detect color and based on the color rotate
@@ -102,7 +105,25 @@ public class FTC201718_AutoRedLeft extends FTC201718_Automation
         ServoArm.down();
         ColorDetectMove(CurrSide);
 
-        encoderDriveDistance(SPEED_NORMAL , -25 + OffSet , TOUT_MEDIUM); //OffSet needs to be negative
+        encoderDriveDistance(SPEED_NORMAL , -25, TOUT_MEDIUM); //OffSet needs to be negative
+        if (vuMark == RelicRecoveryVuMark.LEFT)
+        {
+            encoderDriveDistance(SPEED_NORMAL , -8, TOUT_MEDIUM);
+        }
+        else if (vuMark == RelicRecoveryVuMark.CENTER)
+        {
+            encoderDriveDistance(SPEED_NORMAL , -16, TOUT_MEDIUM);
+        }
+        else if (vuMark == RelicRecoveryVuMark.RIGHT)
+        {
+            encoderDriveDistance(SPEED_NORMAL , -24, TOUT_MEDIUM);
+        }
+        else
+        {
+
+        }
+
+
         encoderTurnInPlace(SPEED_TURN_TILE , -90 , TOUT_LONG);
         encoderDriveDistance(SPEED_SLOW , 12 , TOUT_LONG);
         BlockGrabber.release();
