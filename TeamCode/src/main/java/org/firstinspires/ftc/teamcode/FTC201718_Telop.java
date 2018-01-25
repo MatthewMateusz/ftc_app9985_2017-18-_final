@@ -240,7 +240,7 @@ public class FTC201718_Telop extends OpMode
         actuators.FrontRight.setDirection(DcMotor.Direction.REVERSE);
         actuators.RearLeft.setDirection(DcMotor.Direction.FORWARD);
         actuators.RearRight.setDirection(DcMotor.Direction.REVERSE);
-        //EMD TEMp
+        //EMD TEMP
         telemetry.addData("Status" , "Telop has stopped");
         telemetry.update();
     }
