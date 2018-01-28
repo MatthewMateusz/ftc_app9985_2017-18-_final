@@ -117,18 +117,22 @@ public class FTC201718_AutoRedRight extends FTC201718_Automation
         encoderTurnInPlace(SPEED_TURN_TILE , 90 , TOUT_LONG);
         if (vuMark == RelicRecoveryVuMark.LEFT)
         {
+            //Change value below for left column
             encoderDriveDistance(SPEED_NORMAL , 16.5 , TOUT_MEDIUM);
         }
         else if (vuMark == RelicRecoveryVuMark.CENTER)
         {
+            //Change value below for middle column
             encoderDriveDistance(SPEED_NORMAL , 10.5 , TOUT_MEDIUM);
         }
         else if (vuMark == RelicRecoveryVuMark.RIGHT)
         {
+            //Change value below for right column
             encoderDriveDistance(SPEED_NORMAL , 6.5 , TOUT_MEDIUM);
         }
         else
         {
+            //Change value below for left column
             encoderDriveDistance(SPEED_NORMAL , 6.5 , TOUT_MEDIUM);
         }
 

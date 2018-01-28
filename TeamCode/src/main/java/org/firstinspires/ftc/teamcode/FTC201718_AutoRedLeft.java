@@ -105,22 +105,27 @@ public class FTC201718_AutoRedLeft extends FTC201718_Automation
         ServoArm.down();
         ColorDetectMove(CurrSide);
 
-        encoderDriveDistance(SPEED_NORMAL , -25, TOUT_MEDIUM); //OffSet needs to be negative
+        encoderDriveDistance(SPEED_NORMAL , -25, TOUT_MEDIUM);
+
         if (vuMark == RelicRecoveryVuMark.LEFT)
         {
+            //Change value below for left column
             encoderDriveDistance(SPEED_NORMAL , -8, TOUT_MEDIUM);
         }
         else if (vuMark == RelicRecoveryVuMark.CENTER)
         {
+            //Change value below for middle column
             encoderDriveDistance(SPEED_NORMAL , -16, TOUT_MEDIUM);
         }
         else if (vuMark == RelicRecoveryVuMark.RIGHT)
         {
+            //Change value below for right column
             encoderDriveDistance(SPEED_NORMAL , -24, TOUT_MEDIUM);
         }
         else
         {
-
+            //Change value below for left column
+            encoderDriveDistance(SPEED_NORMAL , -8 , TOUT_MEDIUM);
         }
 
 

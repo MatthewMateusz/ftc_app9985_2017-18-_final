@@ -1,0 +1,10 @@
+-=Steps=-
+1. Choose an autnomous mode :: AutoBlueLeft, AutoBlueRight, AutoRedLeft, AutoRedRight.
+2. Look for the following line(s) of code :: 
+	if (vuMark == RelicRecoveryVuMark.LEFT)
+3. Each look at the comment in each if/elseif/else statement to see what vuforia column they are changing
+4. Change the value for the robot.
+5. Upload code to robot.
+6. Test to see if it puts the block in the right column :: Make sure you run the correct autnomous mode
+7. If it is right test at least two more times, if not repeat steps 4-7.
+8. Once you have tested two more times and both times it puts it in the correct column then go change a different value.

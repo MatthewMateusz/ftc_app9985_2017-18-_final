@@ -127,19 +127,22 @@ public class FTC201718_AutoBlueLeft extends FTC201718_Automation
         encoderDriveDistance(SPEED_NORMAL , 2, TOUT_MEDIUM);
         if (vuMark == RelicRecoveryVuMark.LEFT)
         {
-
+            //Change value below for left column
         }
         else if (vuMark == RelicRecoveryVuMark.CENTER)
         {
-
+            //Change value below for middle column
+            encoderDriveDistance(SPEED_NORMAL , 0 , TOUT_MEDIUM);
         }
         else if (vuMark == RelicRecoveryVuMark.RIGHT)
         {
-
+            //Change value below for right column
+            encoderDriveDistance(SPEED_NORMAL , 0 , TOUT_MEDIUM);
         }
         else
         {
-
+            //Change value below for left column
+            encoderDriveDistance(SPEED_NORMAL , 0 , TOUT_MEDIUM);
         }
 
 
