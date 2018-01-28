@@ -55,6 +55,7 @@ public class FTC201718_AutoBlueLeft extends FTC201718_Automation
         VuforiaTrackables relicTrackables = this.vuforia.loadTrackablesFromAsset("RelicVuMark");
         relicTemplate = relicTrackables.get(0);
         relicTemplate.setName("relicVuMarkTemplate"); // can help in debugging; otherwise not necessary
+        relicTrackables.activate();
         // End of Vuforia Setup A1
 
 
@@ -72,7 +73,7 @@ public class FTC201718_AutoBlueLeft extends FTC201718_Automation
         telemetry.addData("Status" , "Started");
         telemetry.update();
 
-        relicTrackables.activate();
+
 
         //visionTargets.activate();
 
@@ -86,6 +87,7 @@ public class FTC201718_AutoBlueLeft extends FTC201718_Automation
 
     public void MoveAlpha ()
     {
+        sleep(1000);
         double OffSet;
         int LeftBallColor;
         OffSet = 0;
@@ -128,6 +130,7 @@ public class FTC201718_AutoBlueLeft extends FTC201718_Automation
         if (vuMark == RelicRecoveryVuMark.LEFT)
         {
             //Change value below for left column
+            encoderDriveDistance(SPEED_NORMAL , 0 , TOUT_MEDIUM);
         }
         else if (vuMark == RelicRecoveryVuMark.CENTER)
         {

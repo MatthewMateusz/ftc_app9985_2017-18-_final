@@ -45,6 +45,7 @@ public class FTC201718_AutoRedLeft extends FTC201718_Automation
         VuforiaTrackables relicTrackables = this.vuforia.loadTrackablesFromAsset("RelicVuMark");
         relicTemplate = relicTrackables.get(0);
         relicTemplate.setName("relicVuMarkTemplate"); // can help in debugging; otherwise not necessary
+        relicTrackables.activate();
         // End of Vuforia Setup A1
 
         //Add processes for Init
@@ -73,6 +74,7 @@ public class FTC201718_AutoRedLeft extends FTC201718_Automation
 
     public void MoveAlpha ()
     {
+        sleep(1000);
         double OffSet;
         int LeftBallColor;
         OffSet = 0;

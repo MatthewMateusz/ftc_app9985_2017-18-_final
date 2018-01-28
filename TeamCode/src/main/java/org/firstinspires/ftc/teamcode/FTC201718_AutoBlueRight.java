@@ -53,8 +53,9 @@ public class FTC201718_AutoBlueRight extends FTC201718_Automation
         this.vuforia = ClassFactory.createVuforiaLocalizer(parameters);
 
         VuforiaTrackables relicTrackables = this.vuforia.loadTrackablesFromAsset("RelicVuMark");
-        relicTemplate = relicTrackables.get(0);
+        relicTemplate = relicTrackables.get(0);relicTrackables.activate();
         relicTemplate.setName("relicVuMarkTemplate"); // can help in debugging; otherwise not necessary
+
         // End of Vuforia Setup A1
 
         //Add processes for Init
@@ -71,7 +72,8 @@ public class FTC201718_AutoBlueRight extends FTC201718_Automation
         telemetry.addData("Status" , "Started");
         telemetry.update();
 
-        relicTrackables.activate();
+
+
 
         //Add autonomous code here
         MoveAlpha();
@@ -88,6 +90,7 @@ public class FTC201718_AutoBlueRight extends FTC201718_Automation
         OffSet = 0;
 
         //Detect the 'images' on the side
+        sleep(1000);
         RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
         if (vuMark == RelicRecoveryVuMark.LEFT)
         {
@@ -107,9 +110,10 @@ public class FTC201718_AutoBlueRight extends FTC201718_Automation
         else
         {
             OffSet = 0;
+            telemetry.addData("SAW:" , "%s visible" , "FAILED");
 
         }
-
+        telemetry.update();
         sleep(1000);
 
 
@@ -123,22 +127,22 @@ public class FTC201718_AutoBlueRight extends FTC201718_Automation
         if (vuMark == RelicRecoveryVuMark.LEFT)
         {
             //Change value below for left column
-            encoderDriveDistance(SPEED_NORMAL , 0 , TOUT_MEDIUM);
+            encoderDriveDistance(SPEED_NORMAL , 0.5 , TOUT_MEDIUM);
         }
         else if (vuMark == RelicRecoveryVuMark.CENTER)
         {
             //Change value below for middle column
-            encoderDriveDistance(SPEED_NORMAL , 0 , TOUT_MEDIUM);
+            encoderDriveDistance(SPEED_NORMAL , 8 , TOUT_MEDIUM);
         }
         else if (vuMark == RelicRecoveryVuMark.RIGHT)
         {
             //Change value below for right column
-            encoderDriveDistance(SPEED_NORMAL , 0 , TOUT_MEDIUM);
+            encoderDriveDistance(SPEED_NORMAL , 16 , TOUT_MEDIUM);
         }
         else
         {
             //Change value below for left column
-            encoderDriveDistance(SPEED_NORMAL , 0 , TOUT_MEDIUM);
+            encoderDriveDistance(SPEED_NORMAL , 8 , TOUT_MEDIUM);
         }
 
         encoderTurnInPlace(SPEED_TURN_TILE , -93 , TOUT_LONG);
