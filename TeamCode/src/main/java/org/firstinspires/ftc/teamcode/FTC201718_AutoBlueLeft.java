@@ -135,12 +135,12 @@ public class FTC201718_AutoBlueLeft extends FTC201718_Automation
         else if (vuMark == RelicRecoveryVuMark.CENTER)
         {
             //Change value below for middle column
-            encoderDriveDistance(SPEED_NORMAL , 0 , TOUT_MEDIUM);
+            encoderDriveDistance(SPEED_NORMAL , 8 , TOUT_MEDIUM);
         }
         else if (vuMark == RelicRecoveryVuMark.RIGHT)
         {
             //Change value below for right column
-            encoderDriveDistance(SPEED_NORMAL , 0 , TOUT_MEDIUM);
+            encoderDriveDistance(SPEED_NORMAL , 14.5, TOUT_MEDIUM);
         }
         else
         {
@@ -149,11 +149,12 @@ public class FTC201718_AutoBlueLeft extends FTC201718_Automation
         }
 
 
-        encoderTurnInPlace(SPEED_NORMAL , 90 , TOUT_MEDIUM);
-        encoderDriveDistance(SPEED_SLOW , 11 , TOUT_LONG);
+        encoderTurnInPlace(SPEED_NORMAL , -90 , TOUT_MEDIUM);
+        encoderDriveDistance(SPEED_SLOW , 7.5 , TOUT_LONG);
         BlockGrabber.release();
         encoderDriveDistance(SPEED_NORMAL , -5 , TOUT_MEDIUM);
         BlockGrabber.open();
+        sleep(1000);
     }
 
 

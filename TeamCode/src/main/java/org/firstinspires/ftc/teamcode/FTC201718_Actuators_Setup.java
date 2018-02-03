@@ -35,11 +35,11 @@ public class FTC201718_Actuators_Setup
     public Servo RightGlyphHolder = null;
 
     public static final double TailUp   = -0.1;
-    public static final double TailDown = 0.75;
+    public static final double TailDown = 0.74;
 
     public static final double BlockGabberLeft_OPEN      = 0;
     public static final double BlockGabberRight_OPEN     = 1;
-    public static final double BlockGabberLeft_RELEASE   = 0.8;
+    public static final double BlockGabberLeft_RELEASE   = 0.92;
     public static final double BlockGabberRight_RELEASE  = 0.15;
     public static final double BlockGabberLeft_CLOSE     = 1;
     public static final double BlockGabberRight_CLOSE    = 0;

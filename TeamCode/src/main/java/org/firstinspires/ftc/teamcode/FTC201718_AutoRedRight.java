@@ -108,36 +108,36 @@ public class FTC201718_AutoRedRight extends FTC201718_Automation
 
         // Move ServoArm down and detect color and based on the color rotate
         BlockGrabber.close();
-        LiftArmSecond(750);
+        LiftArmSecond(850 );
         ServoArm.down();
         ColorDetectMove(CurrSide);
 
 
-        encoderDriveDistance(SPEED_NORMAL , -25, TOUT_MEDIUM);
+        encoderDriveDistance(SPEED_NORMAL , -21, TOUT_MEDIUM);
         encoderTurnInPlace(SPEED_TURN_TILE , 90 , TOUT_LONG);
         if (vuMark == RelicRecoveryVuMark.LEFT)
         {
             //Change value below for left column
-            encoderDriveDistance(SPEED_NORMAL , 16.5 , TOUT_MEDIUM);
+            encoderDriveDistance(SPEED_NORMAL , 20 , TOUT_MEDIUM);
         }
         else if (vuMark == RelicRecoveryVuMark.CENTER)
         {
             //Change value below for middle column
-            encoderDriveDistance(SPEED_NORMAL , 10.5 , TOUT_MEDIUM);
+            encoderDriveDistance(SPEED_NORMAL , 14 , TOUT_MEDIUM);
         }
         else if (vuMark == RelicRecoveryVuMark.RIGHT)
         {
             //Change value below for right column
-            encoderDriveDistance(SPEED_NORMAL , 6.5 , TOUT_MEDIUM);
+            encoderDriveDistance(SPEED_NORMAL , 6 , TOUT_MEDIUM);
         }
         else
         {
             //Change value below for left column
-            encoderDriveDistance(SPEED_NORMAL , 6.5 , TOUT_MEDIUM);
+            encoderDriveDistance(SPEED_NORMAL , 6 , TOUT_MEDIUM);
         }
 
         encoderTurnInPlace(SPEED_TURN_TILE , 90 , TOUT_LONG);
-        encoderDriveDistance(SPEED_NORMAL , 9 , TOUT_LONG);
+        encoderDriveDistance(SPEED_NORMAL , 7.5 , TOUT_LONG);
         BlockGrabber.release();
         encoderDriveDistance(SPEED_NORMAL , -5 , TOUT_MEDIUM);
         BlockGrabber.open();

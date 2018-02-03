@@ -94,12 +94,12 @@ public class FTC201718_AutoBlueRight extends FTC201718_Automation
         RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
         if (vuMark == RelicRecoveryVuMark.LEFT)
         {
-            OffSet = 0;
+            OffSet = .5;
             telemetry.addData("SAW:" , "%string" , "LEFT");
         }
         else if (vuMark == RelicRecoveryVuMark.CENTER)
         {
-            OffSet = BlockOffset;
+            OffSet = (BlockOffset*1);
             telemetry.addData("SAW:" , "%string" , "CENTER");
         }
         else if (vuMark == RelicRecoveryVuMark.RIGHT)
@@ -146,9 +146,9 @@ public class FTC201718_AutoBlueRight extends FTC201718_Automation
         }
 
         encoderTurnInPlace(SPEED_TURN_TILE , -93 , TOUT_LONG);
-        encoderDriveDistance(SPEED_SLOW ,12 , TOUT_LONG);
+        encoderDriveDistance(SPEED_SLOW ,6 , TOUT_LONG);
         BlockGrabber.release();
-        encoderDriveDistance(SPEED_SLOW , -5 , TOUT_MEDIUM);
+        encoderDriveDistance(SPEED_SLOW , -8 , TOUT_MEDIUM);
         BlockGrabber.open();
     }
 
