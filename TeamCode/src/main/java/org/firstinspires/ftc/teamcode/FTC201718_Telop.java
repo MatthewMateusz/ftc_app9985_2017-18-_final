@@ -180,8 +180,8 @@ public class FTC201718_Telop extends OpMode
 
             if (GP2_ButtonY)
             {
-                actuators.LeftGlyphHolder.setPosition(actuators.BlockGabberLeft_RELEASE);
-                actuators.RightGlyphHolder.setPosition(actuators.BlockGabberRight_RELEASE);
+                actuators.LeftGlyphHolder.setPosition(actuators.BlockGrabberLeft_RTelop);
+                actuators.RightGlyphHolder.setPosition(actuators.BlockGrabberRight_RTelop);
             }
 
             //Closes Jaw

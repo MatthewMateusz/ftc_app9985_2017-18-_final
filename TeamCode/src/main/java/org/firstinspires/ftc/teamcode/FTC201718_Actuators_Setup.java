@@ -39,12 +39,14 @@ public class FTC201718_Actuators_Setup
 
     public static final double BlockGabberLeft_OPEN      = 0;
     public static final double BlockGabberRight_OPEN     = 1;
-    public static final double BlockGabberLeft_RELEASE   = 0.92;
-    public static final double BlockGabberRight_RELEASE  = 0.15;
+    public static final double BlockGabberLeft_RELEASE   = 0.82;
+    public static final double BlockGabberRight_RELEASE  = 0.25;
     public static final double BlockGabberLeft_CLOSE     = 1;
     public static final double BlockGabberRight_CLOSE    = 0;
     public static final double BlockGabberLeft_PARRALLEL = 1; //Not Set
     public static final double BlockGabberRight_PARALLEL = 0; //Not Set
+    public static final double BlockGrabberLeft_RTelop   = 0.92;
+    public static final double BlockGrabberRight_RTelop  = 0.15;
 
     //Servo starting positions
     double ServoArmPostition = 0.5; // 0 - 1 where 0 is 0 degrees and 1 is 180 degrees
